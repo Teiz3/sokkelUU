@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include "esp32-hal-gpio.h"
 #include "status_leds.h"
 
 // GPIO expander board
@@ -20,57 +21,57 @@ void StatusLeds::setup(TwoWire& i2c) {
   if(!mcp.begin_I2C(0x20, &i2c)){
     Serial.println("[ERROR] - MCP I2C connection failed for status_leds");
   }
-  setPinMode();
+  setupPinMode();
   Serial.println("Setup status leds completed!");
 }
 
 void StatusLeds::setLed(uint8_t val, uint8_t address){
   switch (address) {
     case 1:
-      mcp.digitalWrite(Status_LED_A1, val);
-      mcp.digitalWrite(Status_LED_B1, val);
-      mcp.digitalWrite(Status_LED_C1, val);
-      mcp.digitalWrite(Status_LED_D1, val);
+      mcp.digitalWrite(STATUS_LED_A1, val);
+      mcp.digitalWrite(STATUS_LED_B1, val);
+      mcp.digitalWrite(STATUS_LED_C1, val);
+      mcp.digitalWrite(STATUS_LED_D1, val);
       break;
     case 2:
-      mcp.digitalWrite(Status_LED_A2, val);
-      mcp.digitalWrite(Status_LED_B2, val);
-      mcp.digitalWrite(Status_LED_C2, val);
-      mcp.digitalWrite(Status_LED_D2, val);
+      mcp.digitalWrite(STATUS_LED_A2, val);
+      mcp.digitalWrite(STATUS_LED_B2, val);
+      mcp.digitalWrite(STATUS_LED_C2, val);
+      mcp.digitalWrite(STATUS_LED_D2, val);
       break;
     case 3:
-      mcp.digitalWrite(Status_LED_A3, val);
-      mcp.digitalWrite(Status_LED_B3, val);
-      mcp.digitalWrite(Status_LED_C3, val);
-      mcp.digitalWrite(Status_LED_D3, val);
+      mcp.digitalWrite(STATUS_LED_A3, val);
+      mcp.digitalWrite(STATUS_LED_B3, val);
+      mcp.digitalWrite(STATUS_LED_C3, val);
+      mcp.digitalWrite(STATUS_LED_D3, val);
       break;
     case 4:
-      mcp.digitalWrite(Status_LED_A4, val);
-      mcp.digitalWrite(Status_LED_B4, val);
-      mcp.digitalWrite(Status_LED_C4, val);
-      mcp.digitalWrite(Status_LED_D4, val);
+      mcp.digitalWrite(STATUS_LED_A4, val);
+      mcp.digitalWrite(STATUS_LED_B4, val);
+      mcp.digitalWrite(STATUS_LED_C4, val);
+      mcp.digitalWrite(STATUS_LED_D4, val);
       break;
   }
 }
 
-void StatusLeds::setPinMode(){
-  mcp.pinMode(Status_LED_A1, OUTPUT);
-  mcp.pinMode(Status_LED_A2, OUTPUT);
-  mcp.pinMode(Status_LED_A3, OUTPUT);
-  mcp.pinMode(Status_LED_A4, OUTPUT);
+void StatusLeds::setupPinMode(){
+  mcp.pinMode(STATUS_LED_A1, OUTPUT);
+  mcp.pinMode(STATUS_LED_A2, OUTPUT);
+  mcp.pinMode(STATUS_LED_A3, OUTPUT);
+  mcp.pinMode(STATUS_LED_A4, OUTPUT);
 
-  mcp.pinMode(Status_LED_B1, OUTPUT);
-  mcp.pinMode(Status_LED_B2, OUTPUT);
-  mcp.pinMode(Status_LED_B3, OUTPUT);
-  mcp.pinMode(Status_LED_B4, OUTPUT);
+  mcp.pinMode(STATUS_LED_B1, OUTPUT);
+  mcp.pinMode(STATUS_LED_B2, OUTPUT);
+  mcp.pinMode(STATUS_LED_B3, OUTPUT);
+  mcp.pinMode(STATUS_LED_B4, OUTPUT);
 
-  mcp.pinMode(Status_LED_C1, OUTPUT);
-  mcp.pinMode(Status_LED_C2, OUTPUT);
-  mcp.pinMode(Status_LED_C3, OUTPUT);
-  mcp.pinMode(Status_LED_C4, OUTPUT);
+  mcp.pinMode(STATUS_LED_C1, OUTPUT);
+  mcp.pinMode(STATUS_LED_C2, OUTPUT);
+  mcp.pinMode(STATUS_LED_C3, OUTPUT);
+  mcp.pinMode(STATUS_LED_C4, OUTPUT);
 
-  mcp.pinMode(Status_LED_D1, OUTPUT);
-  mcp.pinMode(Status_LED_D2, OUTPUT);
-  mcp.pinMode(Status_LED_D3, OUTPUT);
-  mcp.pinMode(Status_LED_D4, OUTPUT);
+  mcp.pinMode(STATUS_LED_D1, OUTPUT);
+  mcp.pinMode(STATUS_LED_D2, OUTPUT);
+  mcp.pinMode(STATUS_LED_D3, OUTPUT);
+  mcp.pinMode(STATUS_LED_D4, OUTPUT);
 }

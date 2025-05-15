@@ -24,7 +24,7 @@ void setup() {
   
   status_leds->setup(I2Cobj);
   marble->setup();
-  contacts->setup();
+  contacts->setup(I2Cobj);
   incubator->setup();
 }
 

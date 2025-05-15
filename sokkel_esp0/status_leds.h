@@ -9,7 +9,7 @@
 
 class StatusLeds{
     private:
-        void setPinMode();
+        void setupPinMode();
         void setLed(uint8_t val, uint8_t address);
     public:
         void setup(TwoWire& i2c);
