@@ -54,3 +54,8 @@
 #define CONTACT_D3 2
 #define CONTACT_D4 3
 #define CONTACT_D5 4
+
+//============================== Marble track pins ===================
+#define MARBLE_SERVO_1 2
+#define MARBLE_SERVO_2 4
+#define MARBLE_SERVO_3 5
