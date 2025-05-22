@@ -1,6 +1,6 @@
 //============================ I2C pins ================================
-#define SDA_PIN 21
-#define SCL_PIN 38
+#define SDA_PIN 8
+#define SCL_PIN 9
 
 //=========================== Status LEDs pins ========================
 #define STATUS_MCP_ADDR 0x20

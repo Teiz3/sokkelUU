@@ -14,6 +14,9 @@ TwoWire I2Cobj = TwoWire(0);
 
 void setup() {
   Serial.begin(115200);
+  while(!Serial){
+    delay(5);
+  }
 
   I2Cobj.begin(SDA_PIN, SCL_PIN);
   
@@ -22,9 +25,9 @@ void setup() {
   contacts = new Contacts();
   incubator = new Incubator();
   
-  status_leds->setup(I2Cobj);
+  // status_leds->setup(I2Cobj);
   marble->setup();
-  contacts->setup(I2Cobj);
+  // contacts->setup(I2Cobj);
   incubator->setup();
 }
 
