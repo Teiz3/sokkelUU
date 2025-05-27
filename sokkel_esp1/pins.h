@@ -2,6 +2,7 @@
 #define SCL_PIN 22
 
 //=========================== Panel pins =====================================
+//=========================== Multiplexer
 #define STARDUST_3 14
 #define STARDUST_8 15
 
@@ -15,3 +16,10 @@
 #define HUDIG_DOWN 3
 
 #define KEY_SWITCH 7
+#define LED_PIN 45
+
+//=========================== Non-multiplexer
+#define AVO_DC_100V 3
+#define AVO_DC_250uA 4
+#define AVO_AC_250V 7
+#define AVO_AC_OHM 8
