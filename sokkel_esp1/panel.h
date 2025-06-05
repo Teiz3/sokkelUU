@@ -30,7 +30,11 @@ class Panel{
       void setWarnLed(uint8_t val);
       // Checks if the key switch is turned.
       bool keyTurned();
+      bool giantHandleActive();
+      enum CometSwitch getComet(char cometName);
       enum AVOSwitch getAVOAC();
       enum AVOSwitch getAVODC();
+      
+      int debugRead(uint8_t pin);
 };
 #endif

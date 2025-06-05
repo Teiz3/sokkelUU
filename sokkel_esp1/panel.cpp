@@ -18,8 +18,12 @@ bool Panel::keyTurned(){
     return mcp.digitalRead(KEY_SWITCH) == LOW;
 }
 
+bool Panel::giantHandleActive(){
+    return digitalRead(GIANT_HANDLE) == LOW;
+}
+
 void Panel::setWarnLed(uint8_t val){
-    digitalWrite(LED_PIN, val);
+    mcp.digitalWrite(LED_PIN, val);
 }
 
 enum CometSwitch Panel::checkComet(uint8_t pinUp, uint8_t pinDown){
@@ -30,6 +34,27 @@ enum CometSwitch Panel::checkComet(uint8_t pinUp, uint8_t pinDown){
         return DOWN;
     }
     return OFF;
+}
+
+int Panel::debugRead(uint8_t pin){
+  return mcp.digitalRead(pin);
+}
+
+enum CometSwitch Panel::getComet(char cometName){
+  switch (cometName){
+    case 'j':
+      return checkComet(JUNO_UP, JUNO_DOWN);
+      break;
+    case 'v':
+      return checkComet(VESTA_UP, VESTA_DOWN);
+      break;
+    case 'p':
+      return checkComet(PLUTO_UP, PLUTO_DOWN);
+      break;
+    case 'h':
+      return checkComet(HUDIG_UP, HUDIG_DOWN);
+      break;
+  }
 }
 
 enum AVOSwitch Panel::getAVOAC(){
@@ -57,13 +82,15 @@ void Panel::setup(TwoWire& i2c){
     if(!mcp.begin_I2C(0x20, &i2c)){
     Serial.println("[ERROR] - MCP I2C connection failed for panel!");
     }
+    setPinModes();
     Serial.println("Setup panel!");
 }
 
 void Panel::setPinModes(){
+
     mcp.pinMode(STARDUST_3, INPUT_PULLUP);
     mcp.pinMode(STARDUST_8, INPUT_PULLUP);
-    
+
     mcp.pinMode(JUNO_UP, INPUT_PULLUP);
     mcp.pinMode(JUNO_DOWN, INPUT_PULLUP);
     mcp.pinMode(VESTA_UP, INPUT_PULLUP);
@@ -76,9 +103,11 @@ void Panel::setPinModes(){
     mcp.pinMode(KEY_SWITCH, INPUT_PULLUP);
     mcp.pinMode(LED_PIN, OUTPUT);
 
-    pinMode(AVO_DC_100V, INPUT_PULLUP);
-    pinMode(AVO_DC_250uA, INPUT_PULLUP);
-    pinMode(AVO_AC_250V, INPUT_PULLUP);
-    pinMode(AVO_AC_OHM, INPUT_PULLUP);
+    pinMode(GIANT_HANDLE, INPUT_PULLUP);
+
+    // pinMode(AVO_DC_100V, INPUT_PULLUP);
+    // pinMode(AVO_DC_250uA, INPUT_PULLUP);
+    // pinMode(AVO_AC_250V, INPUT_PULLUP);
+    // pinMode(AVO_AC_OHM, INPUT_PULLUP);
 
 }
