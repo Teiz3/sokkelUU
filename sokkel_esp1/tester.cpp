@@ -1,3 +1,4 @@
+#include "esp32-hal.h"
 #include "tester.h"
 
 
@@ -40,8 +41,11 @@ void Tester::test(){
     Serial.print(cometToInt(Hudig, 5));
 
     Serial.print(" Gforce:");
-    Serial.print(panel->getGforce());
-    panel->setWarnLed(!digitalRead(GIANT_HANDLE));
+    int gforce = panel->getGforce();
+    gforce = map(gforce, 1, 4095, 1, 255);
+    Serial.print(gforce);
+    analogWrite(AVO_DISPLAY, gforce);
+    panel->setWarnLed(!panel->debugRead(KEY_SWITCH));
 
     Serial.print(" AC:");
     Serial.print(panel->getAVOAC());

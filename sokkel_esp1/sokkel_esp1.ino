@@ -2,11 +2,13 @@
 #include "panel.h"
 #include "pins.h"
 #include "tester.h"
+#include "screen.h"
 #include <Wire.h>
 
 Panel* panel;
 TwoWire I2Cobj = TwoWire(0);
 Tester tester;
+Screen screen;
 
 void setup() {
   Serial.begin(115200);
@@ -19,7 +21,8 @@ void setup() {
 
   panel = new Panel();
   panel->setup(I2Cobj);
-  
+  screen.setup();
+  screen.print("Pull lever");
 
   tester.setup(panel);
 }
@@ -29,6 +32,13 @@ void loop() {
   // Serial.println("Serial!");
   // delay(50);
   tester.test();
+  if(panel->giantHandleActive()){
+    screen.print("Sun launced!");
+  }
+  else{
+    screen.print("Pull lever");
+  }
+  screen.tick();
   delay(100);
 
 }

@@ -109,6 +109,7 @@ void Panel::setPinModes(){
     mcp.pinMode(LED_PIN, OUTPUT);
 
     pinMode(GIANT_HANDLE, INPUT_PULLUP);
+    pinMode(AVO_DISPLAY, OUTPUT);
 
     pinMode(AVO_DC_100V, INPUT_PULLUP);
     pinMode(AVO_DC_250uA, INPUT_PULLUP);

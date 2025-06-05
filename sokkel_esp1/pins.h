@@ -24,8 +24,9 @@
 #define AVO_AC_250V 7
 #define AVO_AC_OHM 8
 
+#define AVO_DISPLAY 11
 #define GIANT_HANDLE 18
 #define SLIDE_POT_METER 2
 
-// #define SPI_LN 13
-// #define SPI_CLK 14
+#define SPI_LN 13
+#define SPI_CLK 14
