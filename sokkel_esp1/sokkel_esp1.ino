@@ -29,6 +29,6 @@ void loop() {
   // Serial.println("Serial!");
   // delay(50);
   tester.test();
-  delay(50);
+  delay(100);
 
 }

@@ -34,7 +34,7 @@ class Panel{
       enum CometSwitch getComet(char cometName);
       enum AVOSwitch getAVOAC();
       enum AVOSwitch getAVODC();
-      
+      int getGforce();
       int debugRead(uint8_t pin);
 };
 #endif

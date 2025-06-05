@@ -18,8 +18,8 @@ int cometToInt(enum CometSwitch c, int offset){
 }
 
 void Tester::test(){
-    Serial.print("B:-3 ");
-    Serial.print("T:9 ");
+    // Serial.print("B:-3 ");
+    // Serial.print("T:9 ");
     Serial.print("Star:");
     Serial.print(panel->getStardust());
 
@@ -38,7 +38,15 @@ void Tester::test(){
     Serial.print(cometToInt(Pluto, 2));
     Serial.print(" Hudig:");
     Serial.print(cometToInt(Hudig, 5));
+
+    Serial.print(" Gforce:");
+    Serial.print(panel->getGforce());
     panel->setWarnLed(!digitalRead(GIANT_HANDLE));
+
+    Serial.print(" AC:");
+    Serial.print(panel->getAVOAC());
+    Serial.print(" DC:");
+    Serial.print(panel->getAVODC());
     Serial.println("");
 
 }

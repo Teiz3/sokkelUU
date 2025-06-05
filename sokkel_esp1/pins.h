@@ -25,6 +25,7 @@
 #define AVO_AC_OHM 8
 
 #define GIANT_HANDLE 18
+#define SLIDE_POT_METER 2
 
 // #define SPI_LN 13
 // #define SPI_CLK 14

@@ -1,3 +1,4 @@
+#include "esp32-hal-adc.h"
 #include "esp32-hal-gpio.h"
 #include "panel.h"
 
@@ -24,6 +25,10 @@ bool Panel::giantHandleActive(){
 
 void Panel::setWarnLed(uint8_t val){
     mcp.digitalWrite(LED_PIN, val);
+}
+
+int Panel::getGforce(){
+  return analogRead(SLIDE_POT_METER);
 }
 
 enum CometSwitch Panel::checkComet(uint8_t pinUp, uint8_t pinDown){
@@ -105,9 +110,9 @@ void Panel::setPinModes(){
 
     pinMode(GIANT_HANDLE, INPUT_PULLUP);
 
-    // pinMode(AVO_DC_100V, INPUT_PULLUP);
-    // pinMode(AVO_DC_250uA, INPUT_PULLUP);
-    // pinMode(AVO_AC_250V, INPUT_PULLUP);
-    // pinMode(AVO_AC_OHM, INPUT_PULLUP);
+    pinMode(AVO_DC_100V, INPUT_PULLUP);
+    pinMode(AVO_DC_250uA, INPUT_PULLUP);
+    pinMode(AVO_AC_250V, INPUT_PULLUP);
+    pinMode(AVO_AC_OHM, INPUT_PULLUP);
 
 }
