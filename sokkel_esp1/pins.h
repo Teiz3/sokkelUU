@@ -1,5 +1,5 @@
 #define SDA_PIN 21
-#define SCL_PIN 38
+#define SCL_PIN 37
 
 //=========================== Panel pins =====================================
 //=========================== Multiplexer
