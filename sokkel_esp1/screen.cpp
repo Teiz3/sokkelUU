@@ -22,10 +22,6 @@ void Screen::print(String msg){
     x = matrix.width();
   }
   msg_buffer = msg;
-  // matrix.fillScreen(0);
-  // matrix.setCursor(0, 0);
-  // matrix.print(msg);
-  // matrix.show();
 }
 
 void Screen::tick(){

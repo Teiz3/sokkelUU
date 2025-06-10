@@ -27,8 +27,19 @@ void Panel::setWarnLed(uint8_t val){
     mcp.digitalWrite(LED_PIN, val);
 }
 
-int Panel::getGforce(){
+int Panel::getLinPot(){
   return analogRead(SLIDE_POT_METER);
+}
+
+int Panel::getRadiation(){
+  int a = getLinPot();
+  if (a < 400){
+    return 0;
+  }
+  if (a > 3600){
+    return 2;
+  }
+  return 1;
 }
 
 enum CometSwitch Panel::checkComet(uint8_t pinUp, uint8_t pinDown){
