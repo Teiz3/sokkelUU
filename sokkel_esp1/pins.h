@@ -27,6 +27,7 @@
 #define AVO_DISPLAY 11
 #define GIANT_HANDLE 18
 #define SLIDE_POT_METER 2
+#define SUN_IN
 
 #define SPI_LN 13
 #define SPI_CLK 14

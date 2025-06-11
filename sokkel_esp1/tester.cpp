@@ -41,7 +41,7 @@ void Tester::test(){
     Serial.print(cometToInt(Hudig, 5));
 
     Serial.print(" Gforce:");
-    int gforce = panel->getGforce();
+    int gforce = panel->getRadiation();
     gforce = map(gforce, 1, 4095, 1, 255);
     Serial.print(gforce);
     analogWrite(AVO_DISPLAY, gforce);

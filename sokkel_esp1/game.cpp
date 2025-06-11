@@ -8,6 +8,7 @@ void Game::setup(Panel* panel, Screen screen){
 }
 
 void Game::gameLoop(){
+    unsigned long timer;
     switch (currentState){
         case INITIAL:
         default:
@@ -46,18 +47,21 @@ void Game::gameLoop(){
                 panel->getComet('v') == UP &&
                 panel->getComet('p') == DOWN 
             ){
-                currentState = LAUNCH
+                currentState = LAUNCH;
             }
             break;
         case LAUNCH:
-            if(!panel->giantHandleActice){
-                screen.print("launch sun    code 6043    pull lever");
+            screen.print("launch sun    code 6043    pull lever");
+            if(panel->giantHandleActive()){
+                currentState = POSTLAUNCH;
+                timer = millis();
             }
-            else{
-                // Disco mode
-                panel.print("sun launched!");
+            break;
+        case POSTLAUNCH:
+            screen.print("sun launched!");
+            if(millis() - timer > (10 * 1000) && !panel->giantHandleActive()){
+                currentState = INITIAL;
             }
-
             break; 
     }
     return;

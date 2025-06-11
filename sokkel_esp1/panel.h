@@ -40,6 +40,8 @@ class Panel{
       // Gets the radiation of the linear potentiometer. 
       // 0 = left, 1 = middle, 2 = right
       int getRadiation();
+      // Checks if the sun is connected
+      bool sunConnected();
 
       int debugRead(uint8_t pin);
 };

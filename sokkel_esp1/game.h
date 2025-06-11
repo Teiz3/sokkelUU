@@ -18,9 +18,11 @@ enum State{
     // Hudig down, Juno up, Vesta up, Pluto down
     PRELAUNCH,
     // 7. Display "launch sun, code 6043, pull lever"
-    // 8. On lever: disco mode.
-    // (9.) On lever back -> INITIAL
-    LAUNCH
+    // 8. To proceed, pull lever
+    LAUNCH,
+    // 8. disco mode
+    // (9.) To proceed, wait 10 sec and lever back
+    POSTLAUNCH
 
 };
 

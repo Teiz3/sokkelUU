@@ -94,6 +94,10 @@ enum AVOSwitch Panel::getAVODC(){
     return AVO_OFF;
 }
 
+bool Panel::sunConnected(){
+  return analogRead(SUN_IN) > 2800;
+}
+
 void Panel::setup(TwoWire& i2c){
     if(!mcp.begin_I2C(0x20, &i2c)){
     Serial.println("[ERROR] - MCP I2C connection failed for panel!");
@@ -121,10 +125,12 @@ void Panel::setPinModes(){
 
     pinMode(GIANT_HANDLE, INPUT_PULLUP);
     pinMode(AVO_DISPLAY, OUTPUT);
+    pinMode(SUN_IN, INPUT);
 
     pinMode(AVO_DC_100V, INPUT_PULLUP);
     pinMode(AVO_DC_250uA, INPUT_PULLUP);
     pinMode(AVO_AC_250V, INPUT_PULLUP);
     pinMode(AVO_AC_OHM, INPUT_PULLUP);
+
 
 }
