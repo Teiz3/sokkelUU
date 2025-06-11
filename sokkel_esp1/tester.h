@@ -11,5 +11,6 @@ class Tester{
     public:
       void setup(Panel* panel);
       void test();
+      void test2();
 };
 #endif

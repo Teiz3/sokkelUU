@@ -18,6 +18,10 @@ int cometToInt(enum CometSwitch c, int offset){
     }
 }
 
+void Tester::test2(){
+  panel->setWarnLed(HIGH);
+}
+
 void Tester::test(){
     // Serial.print("B:-3 ");
     // Serial.print("T:9 ");
@@ -40,17 +44,18 @@ void Tester::test(){
     Serial.print(" Hudig:");
     Serial.print(cometToInt(Hudig, 5));
 
-    Serial.print(" Gforce:");
-    int gforce = panel->getGforce();
-    gforce = map(gforce, 1, 4095, 1, 255);
-    Serial.print(gforce);
-    analogWrite(AVO_DISPLAY, gforce);
+    // Serial.print(" Gforce:");
+    // int gforce = panel->getGforce();
+    // gforce = map(gforce, 1, 4095, 1, 255);
+    // Serial.print(gforce);
+    // analogWrite(AVO_DISPLAY, gforce);
     panel->setWarnLed(!panel->debugRead(KEY_SWITCH));
+    panel->setWarnLed(HIGH);
 
-    Serial.print(" AC:");
-    Serial.print(panel->getAVOAC());
-    Serial.print(" DC:");
-    Serial.print(panel->getAVODC());
+    // Serial.print(" AC:");
+    // Serial.print(panel->getAVOAC());
+    // Serial.print(" DC:");
+    // Serial.print(panel->getAVODC());
     Serial.println("");
 
 }

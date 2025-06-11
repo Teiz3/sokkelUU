@@ -32,6 +32,7 @@ void loop() {
   // Serial.println("Serial!");
   // delay(50);
   tester.test();
+  // tester.test2();
   if(panel->giantHandleActive()){
     screen.print("Sun launced!");
   }

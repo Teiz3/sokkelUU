@@ -1,5 +1,5 @@
-#define SDA_PIN 21
-#define SCL_PIN 37
+#define SDA_PIN 47
+#define SCL_PIN 38
 
 //=========================== Panel pins =====================================
 //=========================== Multiplexer
@@ -28,5 +28,5 @@
 #define GIANT_HANDLE 18
 #define SLIDE_POT_METER 2
 
-#define SPI_LN 13
-#define SPI_CLK 14
+#define SPI_LN 14
+#define SPI_CLK 13

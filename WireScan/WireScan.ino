@@ -2,7 +2,7 @@
 
 void setup() {
   Serial.begin(115200);
-  Wire.begin(21, 37);
+  Wire.begin(47, 38);
 }
 
 void loop() {
