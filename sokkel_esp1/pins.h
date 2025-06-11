@@ -1,4 +1,4 @@
-#define SDA_PIN 21
+#define SDA_PIN 47
 #define SCL_PIN 38
 
 //=========================== Panel pins =====================================
