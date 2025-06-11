@@ -1,6 +1,6 @@
 //============================ I2C pins ================================
-#define SDA_PIN 8
-#define SCL_PIN 9
+#define SDA_PIN 47
+#define SCL_PIN 38
 
 //=========================== Status LEDs pins ========================
 #define STATUS_MCP_ADDR 0x20
@@ -26,7 +26,7 @@
 #define STATUS_LED_D4 15
 
 //============================ Contacts pins ========================
-#define CONTACT_MCP_ABC_ADDR 0x21
+#define CONTACT_MCP_ABC_ADDR 0x24
 
 #define CONTACT_A1 0  //A0
 #define CONTACT_A2 1
