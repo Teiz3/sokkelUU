@@ -42,16 +42,19 @@ void Tester::test(){
 
     Serial.print(" Rad:");
     Serial.print(panel->getRadiation());
-    int potVal = panel->getLinPot();
-    potVal = map(potVal, 1, 4095, 1, 255);
+    // int potVal = panel->getLinPot();
+    // potVal = map(potVal, 1, 4095, 1, 255);
     // Serial.print(potVal);
-    analogWrite(AVO_DISPLAY, potVal);
-    panel->setWarnLed(!panel->debugRead(KEY_SWITCH));
+    // analogWrite(AVO_DISPLAY, potVal);
+    // panel->setWarnLed(!panel->debugRead(KEY_SWITCH));
 
     Serial.print(" AC:");
     Serial.print(panel->getAVOAC());
     Serial.print(" DC:");
     Serial.print(panel->getAVODC());
-    Serial.println("");
 
+    Serial.print(" POT:");
+    Serial.print(panel->getLinPot());
+
+    Serial.println("");
 }

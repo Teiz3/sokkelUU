@@ -27,9 +27,9 @@ void Game::gameLoop(){
           screen.print("ERROR 404");
           if (
             panel->getStardust() == 3 &&
-            panel->getRadiation() == 2 &&
-            // panel->getAVOAC() == VOLT &&
-            // panel->getAVODC() == VOLT &&
+            // panel->getRadiation() == 2 &&
+            panel->getAVOAC() == VOLT &&
+            panel->getAVODC() == VOLT &&
             panel->getComet('h') == UP &&
             // panel->getComet('j') == DOWN &&
             panel->getComet('v') == DOWN &&
@@ -46,9 +46,9 @@ void Game::gameLoop(){
             }
             if(
                 panel->getStardust() == 8 &&
-                panel->getRadiation() == 1 &&
-                // panel->getAVODC() == A_OHM &&
-                // panel->getAVOAC() == A_OHM &&
+                // panel->getRadiation() == 1 &&
+                panel->getAVODC() == A_OHM &&
+                panel->getAVOAC() == A_OHM &&
                 panel->getComet('h') == DOWN &&
                 // panel->getComet('j') == UP &&
                 panel->getComet('v') == UP &&

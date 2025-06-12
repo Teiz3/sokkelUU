@@ -31,10 +31,7 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  // Serial.println("Serial!");
-  // delay(50);
-  // tester.test();
+  tester.test();
   // if(panel->giantHandleActive()){
   //   screen.print("Sun launced!");
   // }
