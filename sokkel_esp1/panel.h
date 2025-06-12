@@ -22,8 +22,8 @@ class Panel{
     private:
       void setPinModes();
       enum CometSwitch checkComet(uint8_t pinUp, uint8_t pinDown);
-      int getLinPot();
     public:
+      int getLinPot();
       void setup(TwoWire& i2c);
       // Gets the stardust level (3 OR 8), returns 0 if both are not connected.
       int getStardust();
@@ -42,6 +42,7 @@ class Panel{
       int getRadiation();
       // Checks if the sun is connected
       bool sunConnected();
+      void updateAvoMeter();
 
       int debugRead(uint8_t pin);
 };

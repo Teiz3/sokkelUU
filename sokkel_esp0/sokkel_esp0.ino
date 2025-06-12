@@ -18,21 +18,49 @@ void setup() {
     delay(5);
   }
 
-  I2Cobj.begin(SDA_PIN, SCL_PIN);
+  // I2Cobj.begin(SDA_PIN, SCL_PIN);
   
-  status_leds = new StatusLeds();
+  // status_leds = new StatusLeds();
   marble = new Marble();
-  contacts = new Contacts();
-  incubator = new Incubator();
+  // contacts = new Contacts();
+  // incubator = new Incubator();
   
   // status_leds->setup(I2Cobj);
   marble->setup();
   // contacts->setup(I2Cobj);
-  incubator->setup();
+  // incubator->setup();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-
+  // testContacts();
+  testServo();
 }
+
+void testServo(){
+  marble->setMarble(0);
+  delay(1500);
+  marble->setMarble(1);
+  delay(1500);
+}
+
+void testContacts(){
+  Serial.print("B4-D2:");
+  Serial.print(contacts->connected(cB4, cD2));
+  
+  Serial.print(" A1-A2:");
+  Serial.print(contacts->connected(cA4, cA2));
+
+  // Serial.print(" DebugA1:");
+  // Serial.print(contacts->debugReadABC(cB1));
+  
+  // Serial.print(" DebugA2:");
+  // Serial.print(contacts->debugReadABC(cA2));
+
+
+
+
+  Serial.println("");
+  delay(100);
+;}
 

@@ -33,16 +33,16 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   // Serial.println("Serial!");
-  delay(50);
-  tester.test();
-  if(panel->giantHandleActive()){
-    screen.print("Sun launced!");
-  }
-  else{
-    screen.print("Pull lever");
-  }
+  // delay(50);
+  // tester.test();
+  // if(panel->giantHandleActive()){
+  //   screen.print("Sun launced!");
+  // }
+  // else{
+  //   screen.print("Pull lever");
+  // }
   screen.tick();
-  // game.gameLoop();
+  game.gameLoop();
   delay(100);
 
 }

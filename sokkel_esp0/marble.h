@@ -12,4 +12,14 @@ class Marble{
       void setMarble(uint8_t section);
       void setup();
 };
+
+class MyServo{
+  private:
+    bool isOpen = true;
+    Servo servo;
+  public:
+    void setup(uint8_t pin);
+    void open();
+    void close();
+};
 #endif

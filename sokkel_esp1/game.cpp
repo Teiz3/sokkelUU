@@ -1,3 +1,4 @@
+#include "esp32-hal-gpio.h"
 #include "game.h"
 
 
@@ -8,24 +9,29 @@ void Game::setup(Panel* panel, Screen screen){
 }
 
 void Game::gameLoop(){
+    screen.tick();
+    Serial.println(currentState);
+    panel->updateAvoMeter();
     unsigned long timer;
     switch (currentState){
         case INITIAL:
         default:
             screen.print("put in safe mode");
+            panel->setWarnLed(HIGH);
             if(panel->keyTurned()){
                 currentState = SAFEMODE;
             }
             break;
         case SAFEMODE:
+          panel->setWarnLed(LOW);
           screen.print("ERROR 404");
           if (
             panel->getStardust() == 3 &&
             panel->getRadiation() == 2 &&
-            panel->getAVOAC() == VOLT &&
-            panel->getAVODC() == VOLT &&
+            // panel->getAVOAC() == VOLT &&
+            // panel->getAVODC() == VOLT &&
             panel->getComet('h') == UP &&
-            panel->getComet('j') == DOWN &&
+            // panel->getComet('j') == DOWN &&
             panel->getComet('v') == DOWN &&
             panel->getComet('p') == DOWN
         ){
@@ -33,17 +39,18 @@ void Game::gameLoop(){
           }
             break;
         case PRELAUNCH:
-            if ("Sun detection here" == ""){
+            if (!panel->sunConnected()){
                 screen.print("place new sun");
+            }else{
+              screen.print("error 501: new sun detected");
             }
-            screen.print("error 501: new sun detected");
             if(
                 panel->getStardust() == 8 &&
                 panel->getRadiation() == 1 &&
-                panel->getAVODC() == A_OHM &&
-                panel->getAVOAC() == A_OHM &&
+                // panel->getAVODC() == A_OHM &&
+                // panel->getAVOAC() == A_OHM &&
                 panel->getComet('h') == DOWN &&
-                panel->getComet('j') == UP &&
+                // panel->getComet('j') == UP &&
                 panel->getComet('v') == UP &&
                 panel->getComet('p') == DOWN 
             ){
@@ -59,7 +66,9 @@ void Game::gameLoop(){
             break;
         case POSTLAUNCH:
             screen.print("sun launched!");
-            if(millis() - timer > (10 * 1000) && !panel->giantHandleActive()){
+            digitalWrite(SUN_OUT, HIGH);
+            if(millis() - timer > (10 * 1000) && !panel->giantHandleActive() && !panel->keyTurned()){
+                digitalWrite(SUN_OUT, LOW);
                 currentState = INITIAL;
             }
             break; 

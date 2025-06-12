@@ -10,12 +10,12 @@
 #define JUNO_DOWN 12
 #define VESTA_UP 9
 #define VESTA_DOWN 8
-#define PLUTO_UP 3
+#define PLUTO_UP 7
 #define PLUTO_DOWN 5
-#define HUDIG_UP 6
-#define HUDIG_DOWN 7
+#define HUDIG_UP 4
+#define HUDIG_DOWN 3
 
-#define KEY_SWITCH 4
+#define KEY_SWITCH 6
 #define LED_PIN 15
 
 //=========================== Non-multiplexer
@@ -27,7 +27,8 @@
 #define AVO_DISPLAY 11
 #define GIANT_HANDLE 18
 #define SLIDE_POT_METER 2
-#define SUN_IN
+#define SUN_IN 5
+#define SUN_OUT 36
 
-#define SPI_LN 13
-#define SPI_CLK 14
+#define SPI_LN 14
+#define SPI_CLK 13

@@ -23,6 +23,7 @@ class Contacts{
     public:
       void setup(TwoWire& i2c);
       bool connected(enum ContactEnum c1, enum ContactEnum c2);
+      int debugReadABC(enum ContactEnum connectorName);
 };
 
 

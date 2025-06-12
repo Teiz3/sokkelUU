@@ -40,11 +40,12 @@ void Tester::test(){
     Serial.print(" Hudig:");
     Serial.print(cometToInt(Hudig, 5));
 
-    Serial.print(" Gforce:");
-    int gforce = panel->getRadiation();
-    gforce = map(gforce, 1, 4095, 1, 255);
-    Serial.print(gforce);
-    analogWrite(AVO_DISPLAY, gforce);
+    Serial.print(" Rad:");
+    Serial.print(panel->getRadiation());
+    int potVal = panel->getLinPot();
+    potVal = map(potVal, 1, 4095, 1, 255);
+    // Serial.print(potVal);
+    analogWrite(AVO_DISPLAY, potVal);
     panel->setWarnLed(!panel->debugRead(KEY_SWITCH));
 
     Serial.print(" AC:");

@@ -94,6 +94,12 @@ enum AVOSwitch Panel::getAVODC(){
     return AVO_OFF;
 }
 
+void Panel::updateAvoMeter(){
+  int potVal = getLinPot();
+  potVal = map(potVal, 1, 4095, 1, 255);
+  analogWrite(AVO_DISPLAY, potVal);
+}
+
 bool Panel::sunConnected(){
   return analogRead(SUN_IN) > 2800;
 }
@@ -103,6 +109,7 @@ void Panel::setup(TwoWire& i2c){
     Serial.println("[ERROR] - MCP I2C connection failed for panel!");
     }
     setPinModes();
+    digitalWrite(SUN_OUT, LOW);
     Serial.println("Setup panel!");
 }
 
@@ -125,7 +132,9 @@ void Panel::setPinModes(){
 
     pinMode(GIANT_HANDLE, INPUT_PULLUP);
     pinMode(AVO_DISPLAY, OUTPUT);
+    
     pinMode(SUN_IN, INPUT);
+    pinMode(SUN_OUT, OUTPUT);
 
     pinMode(AVO_DC_100V, INPUT_PULLUP);
     pinMode(AVO_DC_250uA, INPUT_PULLUP);
