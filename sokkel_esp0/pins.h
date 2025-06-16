@@ -1,5 +1,5 @@
 //============================ I2C pins ================================
-#define SDA_PIN 47
+#define SDA_PIN 21
 #define SCL_PIN 38
 
 //=========================== Status LEDs pins ========================
@@ -26,7 +26,7 @@
 #define STATUS_LED_D4 15
 
 //============================ Contacts pins ========================
-#define CONTACT_MCP_ABC_ADDR 0x24
+#define CONTACT_MCP_ABC_ADDR 0x22
 
 #define CONTACT_A1 0  //A0
 #define CONTACT_A2 1
@@ -47,7 +47,7 @@
 #define CONTACT_C5 14
 
 // Side D on sepperate MCP27008
-#define CONTACT_MCP_D_ADDR 0x22
+#define CONTACT_MCP_D_ADDR 0x27
 
 #define CONTACT_D1 0
 #define CONTACT_D2 1
@@ -59,3 +59,7 @@
 #define MARBLE_SERVO_1 16//2
 #define MARBLE_SERVO_2 4
 #define MARBLE_SERVO_3 5
+
+#define MARBLE_LED_1 6
+#define MARBLE_LED_2 7
+#define MARBLE_LED_3 8

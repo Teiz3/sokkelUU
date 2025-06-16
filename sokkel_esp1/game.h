@@ -31,6 +31,7 @@ class Game{
         Panel* panel;
         Screen screen;
         enum State currentState = INITIAL;
+        void launchSun();
     public:
       void setup(Panel* panel, Screen screen);
       void gameLoop();

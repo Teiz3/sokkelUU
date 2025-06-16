@@ -19,7 +19,8 @@ void Screen::setup(){
 
 void Screen::print(String msg){
   if(msg_buffer != msg){
-    x = matrix.width();
+    // x = matrix.width();
+    x = 0;
   }
   msg_buffer = msg;
 }

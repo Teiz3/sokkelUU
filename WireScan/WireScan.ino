@@ -2,7 +2,8 @@
 
 void setup() {
   Serial.begin(115200);
-  Wire.begin(47, 38);
+  // Wire.begin(47, 38); // ESP1
+  Wire.begin(21, 38); // ESP0
 }
 
 void loop() {

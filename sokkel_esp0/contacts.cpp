@@ -17,6 +17,9 @@ void Contacts::setup(TwoWire& i2c){
 }
 
 bool Contacts::connected(enum ContactEnum c1, enum ContactEnum c2){
+  if(c1 == c2){
+    return true;
+  }
   // Put 3.3v on c1
   uint8_t c1_pin = getPin(c1);
   if(isPlateD(c1)){

@@ -7,6 +7,8 @@
 
 class Marble{
     private:
+      void setLed(uint8_t led, uint8_t val);
+      void ledsOnTill(uint8_t section);
     public:
       // Open up the marble track till parameter section. section 0 = all closed, section 3 = all open
       void setMarble(uint8_t section);

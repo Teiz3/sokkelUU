@@ -66,7 +66,8 @@ void Game::gameLoop(){
             break;
         case POSTLAUNCH:
             screen.print("sun launched!");
-            digitalWrite(SUN_OUT, HIGH);
+            // digitalWrite(SUN_OUT, HIGH);
+            launchSun();
             if(millis() - timer > (10 * 1000) && !panel->giantHandleActive() && !panel->keyTurned()){
                 digitalWrite(SUN_OUT, LOW);
                 currentState = INITIAL;
@@ -74,4 +75,11 @@ void Game::gameLoop(){
             break; 
     }
     return;
+}
+
+void Game::launchSun(){
+    for (int i = 0; i <= 255; i++){
+        analogWrite(SUN_OUT, i);
+        delay(10);
+    }
 }

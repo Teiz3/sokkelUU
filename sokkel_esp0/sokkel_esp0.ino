@@ -3,12 +3,15 @@
 #include "marble.h"
 #include "incubator.h"
 #include "pins.h"
+#include "game.h"
 #include <Wire.h>
 
 StatusLeds* status_leds; // Status leds object to control the 16 status leds
 Marble* marble; // Status leds object to control the 16 status leds
 Contacts* contacts; // Status leds object to control the 16 status leds
 Incubator* incubator; // Status leds object to control the 16 status leds
+
+Game game;
 
 TwoWire I2Cobj = TwoWire(0);
 
@@ -18,23 +21,27 @@ void setup() {
     delay(5);
   }
 
-  // I2Cobj.begin(SDA_PIN, SCL_PIN);
+  I2Cobj.begin(SDA_PIN, SCL_PIN);
   
-  // status_leds = new StatusLeds();
+  status_leds = new StatusLeds();
   marble = new Marble();
-  // contacts = new Contacts();
+  contacts = new Contacts();
   // incubator = new Incubator();
   
-  // status_leds->setup(I2Cobj);
+  status_leds->setup(I2Cobj);
   marble->setup();
-  // contacts->setup(I2Cobj);
+  contacts->setup(I2Cobj);
   // incubator->setup();
+  digitalWrite(RGB_BUILTIN, LOW);
+
+  game.setup(contacts, status_leds, marble);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   // testContacts();
-  testServo();
+  // testServo();
+  game.gameLoop();
 }
 
 void testServo(){
