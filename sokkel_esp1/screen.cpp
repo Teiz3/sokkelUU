@@ -19,38 +19,52 @@ void Screen::setup(){
 
 void Screen::print(String msg){
   if(msg_buffer != msg){
-    // x = matrix.width();
+    Serial.println(msg);
     x = 0;
     lastUpdate = millis();
+    msg_buffer = msg;
     msg_pixel_size = msg_buffer.length() * 6; //(5+1) pixels for each letter
   }
-  msg_buffer = msg;
 }
 
 void Screen::tick(){
-  if (millis()-lastUpdate < readTime){
-    return;
-  }
-  x--;
   matrix.fillScreen(0);
   matrix.setCursor(x, 0);
-   matrix.print(msg_buffer);
+  matrix.print(msg_buffer);
   matrix.show();
-  if(x <= min(-(msg_pixel_size - 32), 0)){
-    nextMsg();
+  if (millis()-lastUpdate < readTime){
+
+    Serial.println("READ return");
+    return;
+  }
+  x = x - 1;
+  if(x <= min(-1*(msg_pixel_size - 32), 0)){
+    if (!freeze){
+      freezeTime = millis();
+      freeze = true;
+    }
+    if (millis()-freezeTime > readTime){
+      nextMsg();
+      freeze = false;
+    }
   }
 
 }
 
 void Screen::nextMsg(){
-  if (msg_count = 1){
+  Serial.println("NEXTMSG_TRIGGER");
+  Serial.println(msg_count);
+  Serial.println(msg_index);
+  if (msg_count == 1){
      x = 0;
     lastUpdate = millis();
   }
   else{
-    msg_index = (msg_index+1) % (msg_count+1); 
+    msg_index = (msg_index+1) % (msg_count); 
     print(multi_msg_buffer[msg_index]);
   }
+  Serial.println(msg_count);
+  Serial.println(msg_index);
 }
 
 void Screen::setBuffer(String msg_arr[], uint8_t size){

@@ -1,9 +1,12 @@
+#include "esp32-hal-gpio.h"
 #include "game.h"
 
 void Game::setup(Contacts* contacts, StatusLeds* leds, Marble* marble){
     Game::contacts = contacts;
     Game::statusleds = leds;
     Game::marble = marble;
+    digitalWrite(LOCK_OUT, HIGH); // Lock the lock
+
 }
 
 void Game::gameLoop(){
@@ -32,6 +35,8 @@ void Game::gameLoop(){
             break;
     // Wait for reset
         case 4:
+            digitalWrite(LOCK_LED, HIGH);
+            digitalWrite(LOCK_OUT, LOW);
             break;
     }
     statusleds->setStatus(connections);

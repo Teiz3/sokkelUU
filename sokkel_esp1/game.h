@@ -32,6 +32,7 @@ class Game{
         Screen screen;
         enum State currentState = INITIAL;
         void launchSun();
+        bool launced = false;
     public:
       void setup(Panel* panel, Screen screen);
       void gameLoop();

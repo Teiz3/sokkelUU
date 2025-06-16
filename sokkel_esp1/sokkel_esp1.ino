@@ -14,9 +14,9 @@ Game game;
 
 void setup() {
   Serial.begin(115200);
-  while(!Serial){
-    delay(5);
-  }
+  // while(!Serial){
+  //   delay(5);
+  // }
   Serial.println("Serial port started.");
   I2Cobj.begin(SDA_PIN, SCL_PIN);
   // I2Cobj.setClock(100000);
@@ -37,7 +37,7 @@ void loop() {
   // else{
   //   screen.print("Pull lever");
   // }
-  screen.tick();
+  // screen.tick();
   game.gameLoop();
   delay(100);
 

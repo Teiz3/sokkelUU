@@ -63,3 +63,6 @@
 #define MARBLE_LED_1 6
 #define MARBLE_LED_2 7
 #define MARBLE_LED_3 8
+
+#define LOCK_OUT 40
+#define LOCK_LED 39

@@ -10,6 +10,7 @@ void Game::setup(Panel* panel, Screen screen){
 
 void Game::gameLoop(){
     screen.tick();
+    Serial.print("State:");
     Serial.println(currentState);
     panel->updateAvoMeter();
     unsigned long timer;
@@ -31,7 +32,7 @@ void Game::gameLoop(){
             panel->getAVOAC() == VOLT &&
             panel->getAVODC() == VOLT &&
             panel->getComet('h') == UP &&
-            // panel->getComet('j') == DOWN &&
+            panel->getComet('j') == DOWN &&
             panel->getComet('v') == DOWN &&
             panel->getComet('p') == DOWN
         ){
@@ -42,7 +43,7 @@ void Game::gameLoop(){
             if (!panel->sunConnected()){
                 screen.print("place new sun");
             }else{
-              String pre_msgs[2] = {"error 501", "new sun detected"};
+              String pre_msgs[2] = {"Error 501", "new sun detected"};
               screen.setBuffer(pre_msgs, 2);
             }
             if(
@@ -52,7 +53,7 @@ void Game::gameLoop(){
                 panel->getAVOAC() == A_OHM &&
                 panel->getComet('h') == DOWN &&
                 panel->getComet('j') == UP &&
-                panel->getComet('v') == UP &&
+                // panel->getComet('v') == UP &&
                 panel->getComet('p') == DOWN 
             ){
                 currentState = LAUNCH;
@@ -76,6 +77,8 @@ void Game::gameLoop(){
             if(millis() - timer > (10 * 1000) && !panel->giantHandleActive() && !panel->keyTurned()){
                 digitalWrite(SUN_OUT, LOW);
                 currentState = INITIAL;
+                launced=false;
+                analogWrite(SUN_OUT, 0);
             }
             break; 
     }
@@ -83,8 +86,12 @@ void Game::gameLoop(){
 }
 
 void Game::launchSun(){
+  if(launced){
+    return;
+  }
     for (int i = 0; i <= 255; i++){
         analogWrite(SUN_OUT, i);
-        delay(10);
+        delay(100);
     }
+    launced=true;
 }

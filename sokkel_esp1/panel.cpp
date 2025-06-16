@@ -33,10 +33,10 @@ int Panel::getLinPot(){
 
 int Panel::getRadiation(){
   int a = getLinPot();
-  if (a < 400){
+  if (a < 1300){
     return 0;
   }
-  if (a > 3600){
+  if (a > 3000){
     return 2;
   }
   return 1;
