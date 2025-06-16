@@ -41,8 +41,8 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   // testContacts();
-  testServo();
-  // game.gameLoop();
+  // testServo();
+  game.gameLoop();
 }
 
 void testServo(){
