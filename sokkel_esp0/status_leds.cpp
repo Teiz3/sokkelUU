@@ -6,9 +6,9 @@
 Adafruit_MCP23X17 mcp;
 
 void StatusLeds::setStatus(uint8_t status){
-  if(frozen){
-    return;
-  }
+  // if(frozen){
+  //   return;
+  // }
   // Turn off all leds
   for (int i = 1; i <= 4; i++){
     setLed(i, LOW);

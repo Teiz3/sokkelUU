@@ -37,7 +37,7 @@ void Marble::setMarble(uint8_t section){
 }
 
 void Marble::setup(){
-  servo1.attach(MARBLE_SERVO_1);
+  // servo1.attach(MARBLE_SERVO_1);
   // servo2.attach(MARBLE_SERVO_2);
   // servo3.attach(MARBLE_SERVO_3);
 

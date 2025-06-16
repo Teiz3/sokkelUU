@@ -1,7 +1,6 @@
 #include "status_leds.h"
 #include "contacts.h"
 #include "marble.h"
-#include "incubator.h"
 #include "pins.h"
 #include "game.h"
 #include <Wire.h>
@@ -9,11 +8,10 @@
 StatusLeds* status_leds; // Status leds object to control the 16 status leds
 Marble* marble; // Status leds object to control the 16 status leds
 Contacts* contacts; // Status leds object to control the 16 status leds
-Incubator* incubator; // Status leds object to control the 16 status leds
 
-// Game game;
+Game game;
 
-// TwoWire I2Cobj = TwoWire(0);
+TwoWire I2Cobj = TwoWire(0);
 
 void setup() {
   Serial.begin(115200);
@@ -22,27 +20,29 @@ void setup() {
   }
   Serial.println("Serial online!");
 
-  // I2Cobj.begin(SDA_PIN, SCL_PIN);
+  I2Cobj.begin(SDA_PIN, SCL_PIN);
   
-  // status_leds = new StatusLeds();
+  status_leds = new StatusLeds();
   marble = new Marble();
-  // contacts = new Contacts();
-  // incubator = new Incubator();
+  contacts = new Contacts();
   
-  // status_leds->setup(I2Cobj);
+  status_leds->setup(I2Cobj);
   marble->setup();
-  // contacts->setup(I2Cobj);
-  // incubator->setup();
-  // digitalWrite(RGB_BUILTIN, LOW);
+  contacts->setup(I2Cobj);
+  digitalWrite(RGB_BUILTIN, LOW);
 
-  // game.setup(contacts, status_leds, marble);
+  game.setup(contacts, status_leds, marble);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   // testContacts();
   // testServo();
-  game.gameLoop();
+  // game.gameLoop();
+  status_leds->setStatus(4);
+  delay(5000);
+  status_leds->setStatus(0);
+  delay(5000);
 }
 
 void testServo(){

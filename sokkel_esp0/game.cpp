@@ -40,6 +40,8 @@ void Game::gameLoop(){
             break;
     }
     statusleds->setStatus(connections);
+    Serial.print("Level:");
+    Serial.print(level);
     Serial.print("Connections: ");
     Serial.println(connections);
     if (connections >= 4){
@@ -51,7 +53,7 @@ void Game::gameLoop(){
 
 void Game::nextLevel(){
   // Open the marbletrack-part of the level just completed
-  marble->setMarble(level);
+  // marble->setMarble(level);
   level += 1;
   
 
