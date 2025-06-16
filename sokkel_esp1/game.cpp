@@ -42,15 +42,16 @@ void Game::gameLoop(){
             if (!panel->sunConnected()){
                 screen.print("place new sun");
             }else{
-              screen.print("error 501: new sun detected");
+              String pre_msgs[2] = {"error 501", "new sun detected"};
+              screen.setBuffer(pre_msgs, 2);
             }
             if(
                 panel->getStardust() == 8 &&
-                // panel->getRadiation() == 1 &&
+                panel->getRadiation() == 1 &&
                 panel->getAVODC() == A_OHM &&
                 panel->getAVOAC() == A_OHM &&
                 panel->getComet('h') == DOWN &&
-                // panel->getComet('j') == UP &&
+                panel->getComet('j') == UP &&
                 panel->getComet('v') == UP &&
                 panel->getComet('p') == DOWN 
             ){
@@ -58,12 +59,16 @@ void Game::gameLoop(){
             }
             break;
         case LAUNCH:
-            screen.print("launch sun    code 6043    pull lever");
+        {
+
+            String launch_msgs[3] = {"launch sun", "code 6043", "pull lever"};
+            screen.setBuffer(launch_msgs, 3);
             if(panel->giantHandleActive()){
                 currentState = POSTLAUNCH;
                 timer = millis();
             }
             break;
+        }
         case POSTLAUNCH:
             screen.print("sun launched!");
             // digitalWrite(SUN_OUT, HIGH);

@@ -1,4 +1,3 @@
-#include "sun.h"
 #include "panel.h"
 #include "pins.h"
 #include "tester.h"
