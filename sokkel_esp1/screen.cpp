@@ -34,7 +34,7 @@ void Screen::tick(){
     matrix.print(msg_buffer);
     matrix.show();
   }
-  if (millis()-lastUpdate < readTime){
+  if (millis()-lastUpdate < (readTime - 1000)){
 
     Serial.println("READ return");
     return;
@@ -70,7 +70,7 @@ void Screen::nextMsg(){
 }
 
 void Screen::setBuffer(String msg_arr[], uint8_t size){
-  if(!multi_msg_buffer[0] == msg_arr[0]){
+  if(!(multi_msg_buffer[0] == msg_arr[0])){
 
     for (int i = 0; i < size; i++) {
       multi_msg_buffer[i] = msg_arr[i];

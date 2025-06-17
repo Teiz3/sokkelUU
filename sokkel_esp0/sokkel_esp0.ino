@@ -39,10 +39,21 @@ void loop() {
   // testContacts();
   // testServo();
   // game.gameLoop();
-  status_leds->setStatus(4);
-  delay(5000);
-  status_leds->setStatus(0);
-  delay(5000);
+  // testLeds();
+  // status_leds->setStatus(2);
+  status_leds->setLed(1, LOW);
+  status_leds->setLed(2, HIGH);
+  status_leds->setLed(3, LOW);
+  status_leds->setLed(4, LOW);
+
+}
+
+void testLeds(){
+  for(int i = 0; i <= 4; i++){
+    status_leds->setStatus(i);
+    delay(1000);
+    Serial.println(i);
+  }
 }
 
 void testServo(){
@@ -53,12 +64,30 @@ void testServo(){
 }
 
 void testContacts(){
-  Serial.print("B4-D2:");
-  Serial.print(contacts->connected(cB4, cD2));
-  
-  Serial.print(" A1-A2:");
-  Serial.print(contacts->connected(cA4, cA2));
-
+  Serial.print("Plate A - ");
+  Serial.print(contacts->debugReadABC(cA1));
+  Serial.print(contacts->debugReadABC(cA2));
+  Serial.print(contacts->debugReadABC(cA3));
+  Serial.print(contacts->debugReadABC(cA4));
+  Serial.println(contacts->debugReadABC(cA5));
+  Serial.print("Plate B - ");
+  Serial.print(contacts->debugReadABC(cB1));
+  Serial.print(contacts->debugReadABC(cB2));
+  Serial.print(contacts->debugReadABC(cB3));
+  Serial.print(contacts->debugReadABC(cB4));
+  Serial.println(contacts->debugReadABC(cB5));
+  Serial.print("Plate C - ");
+  Serial.print(contacts->debugReadABC(cC1));
+  Serial.print(contacts->debugReadABC(cC2));
+  Serial.print(contacts->debugReadABC(cC3));
+  Serial.print(contacts->debugReadABC(cC4));
+  Serial.println(contacts->debugReadABC(cC5));
+  Serial.print("Plate D - ");
+  Serial.print(contacts->debugReadABC(cD1));
+  Serial.print(contacts->debugReadABC(cD2));
+  Serial.print(contacts->debugReadABC(cD3));
+  Serial.print(contacts->debugReadABC(cD4));
+  Serial.println(contacts->debugReadABC(cD5));
   // Serial.print(" DebugA1:");
   // Serial.print(contacts->debugReadABC(cB1));
   

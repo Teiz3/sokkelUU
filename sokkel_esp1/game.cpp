@@ -28,7 +28,7 @@ void Game::gameLoop(){
           screen.print("ERROR 404");
           if (
             panel->getStardust() == 3 &&
-            // panel->getRadiation() == 2 &&
+            panel->getRadiation() == 2 &&
             panel->getAVOAC() == VOLT &&
             panel->getAVODC() == VOLT &&
             panel->getComet('h') == UP &&
@@ -53,7 +53,7 @@ void Game::gameLoop(){
                 panel->getAVOAC() == A_OHM &&
                 panel->getComet('h') == DOWN &&
                 panel->getComet('j') == UP &&
-                // panel->getComet('v') == UP &&
+                panel->getComet('v') == UP &&
                 panel->getComet('p') == DOWN 
             ){
                 currentState = LAUNCH;

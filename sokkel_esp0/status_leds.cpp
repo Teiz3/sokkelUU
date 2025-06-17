@@ -5,17 +5,17 @@
 // GPIO expander board
 Adafruit_MCP23X17 mcp;
 
+
+
 void StatusLeds::setStatus(uint8_t status){
   // if(frozen){
   //   return;
   // }
-  // Turn off all leds
-  for (int i = 1; i <= 4; i++){
-    setLed(i, LOW);
-  }
-  // Turn the ones needed back on
   for (int i = 1; i <= status && i <= 4; i++){
     setLed(i, HIGH);
+  }
+  for (int i = status+1; i<= 4; i++){
+    setLed(i, LOW);
   }
 }
 
@@ -32,10 +32,14 @@ void StatusLeds::tick(){
 
 void StatusLeds::setup(TwoWire& i2c) {
   // Start mcp connection with 0x20 as default i2c address
-  if(!mcp.begin_I2C(0x20, &i2c)){
+  if(!mcp.begin_I2C(0x26, &i2c)){
     Serial.println("[ERROR] - MCP I2C connection failed for status_leds");
   }
-  setupPinMode();
+  // setupPinMode();
+  mcp.pinMode(0, INPUT_PULLUP);
+  while(true){
+    Serial.println(mcp.digitalRead(0));
+  }
   Serial.println("Setup status leds completed!");
 }
 
