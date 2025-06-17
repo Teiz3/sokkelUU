@@ -23,15 +23,17 @@ void setup() {
   I2Cobj.begin(SDA_PIN, SCL_PIN);
   
   status_leds = new StatusLeds();
-  marble = new Marble();
-  contacts = new Contacts();
+  // marble = new Marble();
+  // contacts = new Contacts();
   
   status_leds->setup(I2Cobj);
-  marble->setup();
-  contacts->setup(I2Cobj);
-  digitalWrite(RGB_BUILTIN, LOW);
+  // marble->setup();
+  // contacts->setup(I2Cobj);
+  // digitalWrite(RGB_BUILTIN, LOW);
 
-  game.setup(contacts, status_leds, marble);
+  // game.setup(contacts, status_leds, marble);
+  // status_leds->setLed(1, HIGH);
+  status_leds->test();
 }
 
 void loop() {
@@ -45,7 +47,7 @@ void loop() {
   // status_leds->setLed(2, HIGH);
   // status_leds->setLed(3, LOW);
   // status_leds->setLed(4, LOW);
-  testContacts();
+  // testContacts();
 }
 
 void testLeds(){

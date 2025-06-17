@@ -18,6 +18,7 @@ class StatusLeds{
         void setStatus(uint8_t status);
         void freeze(unsigned long duration);
         void tick();
+        void test();
 };
 
 
