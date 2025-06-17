@@ -13,10 +13,11 @@ class Screen{
       String msg_buffer;
       String multi_msg_buffer[5];
       uint8_t msg_count = 1;
-      uint8_t msg_index = 0;
+      uint8_t msg_index = 0; // 0 based index
+
       int x;
       int msg_pixel_size;
-      unsigned long readTime = 2500;
+      unsigned long readTime = 2000;
       unsigned long lastUpdate;
       // Freeze text once done scrolling
       bool freeze = false;

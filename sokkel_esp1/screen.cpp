@@ -28,10 +28,12 @@ void Screen::print(String msg){
 }
 
 void Screen::tick(){
-  matrix.fillScreen(0);
-  matrix.setCursor(x, 0);
-  matrix.print(msg_buffer);
-  matrix.show();
+  if(!freeze){
+    matrix.fillScreen(0);
+    matrix.setCursor(x, 0);
+    matrix.print(msg_buffer);
+    matrix.show();
+  }
   if (millis()-lastUpdate < readTime){
 
     Serial.println("READ return");
@@ -60,7 +62,7 @@ void Screen::nextMsg(){
     lastUpdate = millis();
   }
   else{
-    msg_index = (msg_index+1) % (msg_count); 
+    msg_index = (msg_index+1) % msg_count; 
     print(multi_msg_buffer[msg_index]);
   }
   Serial.println(msg_count);
@@ -68,12 +70,14 @@ void Screen::nextMsg(){
 }
 
 void Screen::setBuffer(String msg_arr[], uint8_t size){
-  
-  for (int i = 0; i < size; i++) {
-        multi_msg_buffer[i] = msg_arr[i];
+  if(!multi_msg_buffer[0] == msg_arr[0]){
+
+    for (int i = 0; i < size; i++) {
+      multi_msg_buffer[i] = msg_arr[i];
     }
-  msg_count = size;
-  msg_index = 0;
-  print(multi_msg_buffer[msg_index]);
+    msg_count = size;
+    msg_index = 0;
+    print(multi_msg_buffer[msg_index]);
+  }
 }
 
