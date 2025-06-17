@@ -32,14 +32,11 @@ void StatusLeds::tick(){
 
 void StatusLeds::setup(TwoWire& i2c) {
   // Start mcp connection with 0x20 as default i2c address
-  if(!mcp.begin_I2C(0x26, &i2c)){
+  if(!mcp.begin_I2C(0x20, &i2c)){
     Serial.println("[ERROR] - MCP I2C connection failed for status_leds");
   }
   // setupPinMode();
-  mcp.pinMode(0, INPUT_PULLUP);
-  while(true){
-    Serial.println(mcp.digitalRead(0));
-  }
+  // mcp.pinMode(0, INPUT_PULLUP);
   Serial.println("Setup status leds completed!");
 }
 

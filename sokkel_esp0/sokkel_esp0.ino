@@ -26,12 +26,12 @@ void setup() {
   marble = new Marble();
   contacts = new Contacts();
   
-  status_leds->setup(I2Cobj);
+  // status_leds->setup(I2Cobj);
   marble->setup();
   contacts->setup(I2Cobj);
-  digitalWrite(RGB_BUILTIN, LOW);
+  // digitalWrite(RGB_BUILTIN, LOW);
 
-  game.setup(contacts, status_leds, marble);
+  // game.setup(contacts, status_leds, marble);
 }
 
 void loop() {
@@ -98,6 +98,6 @@ void testContacts(){
 
 
   Serial.println("");
-  delay(100);
+  delay(1000);
 ;}
 

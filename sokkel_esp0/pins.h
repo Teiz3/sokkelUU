@@ -28,23 +28,23 @@
 //============================ Contacts pins ========================
 #define CONTACT_MCP_ABC_ADDR 0x22
 
-#define CONTACT_A1 0  //A0
-#define CONTACT_A2 1
-#define CONTACT_A3 2
-#define CONTACT_A4 3
-#define CONTACT_A5 4
+#define CONTACT_A1 1  //A0
+#define CONTACT_A2 0
+#define CONTACT_A3 13
+#define CONTACT_A4 14
+#define CONTACT_A5 15
 
-#define CONTACT_B1 5
+#define CONTACT_B1 7
 #define CONTACT_B2 6
-#define CONTACT_B3 7
-#define CONTACT_B4 8    //B0
-#define CONTACT_B5 9
+#define CONTACT_B3 5
+#define CONTACT_B4 4    //B0
+#define CONTACT_B5 3
 
-#define CONTACT_C1 10
-#define CONTACT_C2 11
-#define CONTACT_C3 12
-#define CONTACT_C4 13
-#define CONTACT_C5 14
+#define CONTACT_C1 8
+#define CONTACT_C2 9
+#define CONTACT_C3 10
+#define CONTACT_C4 11
+#define CONTACT_C5 12
 
 // Side D on sepperate MCP27008
 #define CONTACT_MCP_D_ADDR 0x27
