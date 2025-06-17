@@ -32,7 +32,6 @@ void setup() {
   // digitalWrite(RGB_BUILTIN, LOW);
 
   // game.setup(contacts, status_leds, marble);
-  // status_leds->setLed(1, HIGH);
   status_leds->test();
 }
 
@@ -100,6 +99,6 @@ void testContacts(){
 
 
   Serial.println("");
-  delay(100);
+  delay(1000);
 ;}
 
