@@ -41,11 +41,11 @@ void loop() {
   // game.gameLoop();
   // testLeds();
   // status_leds->setStatus(2);
-  status_leds->setLed(1, LOW);
-  status_leds->setLed(2, HIGH);
-  status_leds->setLed(3, LOW);
-  status_leds->setLed(4, LOW);
-
+  // status_leds->setLed(1, LOW);
+  // status_leds->setLed(2, HIGH);
+  // status_leds->setLed(3, LOW);
+  // status_leds->setLed(4, LOW);
+  testContacts();
 }
 
 void testLeds(){
