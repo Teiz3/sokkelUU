@@ -13,12 +13,12 @@ class StatusLeds{
         bool frozen = false;
         unsigned long unfreezetime;
     public:
-        void setLed(uint8_t val, uint8_t address);
+        // Sets 4 leds to val, 1 on each side. Address range: 1-4
+        void setLed(uint8_t address, uint8_t val);
         void setup(TwoWire& i2c);
         void setStatus(uint8_t status);
         void freeze(unsigned long duration);
         void tick();
-        void test();
 };
 
 

@@ -5,35 +5,13 @@
 // GPIO expander board
 Adafruit_MCP23X17 mcp;
 
-void StatusLeds::test(){
-  // mcp.digitalWrite(0, HIGH);
-  // delay(1000);
-  // mcp.digitalWrite(1, HIGH);
-  // delay(1000);
-  // mcp.digitalWrite(2, HIGH);
-  // delay(1000);
-  // mcp.digitalWrite(3, HIGH);
-  // delay(1000);
-  for(int i = 0; i < 16; i++){
-    // if(i == BUTTON_PIN){
-    //   continue;
-    // }
-    mcp.digitalWrite(i, HIGH);
-    Serial.print(i);
-    delay(3000);
-  }
-}
-
 
 void StatusLeds::setStatus(uint8_t status){
-  // if(frozen){
-  //   return;
-  // }
-  for (int i = 1; i <= status && i <= 4; i++){
-    setLed(i, HIGH);
+  if(frozen){
+    return;
   }
-  for (int i = status+1; i<= 4; i++){
-    setLed(i, LOW);
+  for (int i = 1; i <= status && i <= 4; i++){
+    setLed(i, (i <= status) ? HIGH : LOW);
   }
 }
 
@@ -60,7 +38,7 @@ void StatusLeds::setup(TwoWire& i2c) {
   Serial.println("Setup status leds completed!");
 }
 
-void StatusLeds::setLed(uint8_t val, uint8_t address){
+void StatusLeds::setLed(uint8_t address, uint8_t val){
   switch (address) {
     case 1:
       mcp.digitalWrite(STATUS_LED_A1, val);

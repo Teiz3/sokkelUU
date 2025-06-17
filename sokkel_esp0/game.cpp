@@ -22,15 +22,15 @@ void Game::gameLoop(){
             break;
     // Level 2 (4 contacts)
         case 2:
-            connections += contacts->connected(cA1, cB1);
-            connections += contacts->connected(cB1, cC1);
-            connections += contacts->connected(cC1, cD1);
-            connections += contacts->connected(cD1, cA1);
+            connections += contacts->connected(cA3, cD4); // stars to twins
+            connections += contacts->connected(cD3, cC4); // stars to capricorn
+            connections += contacts->connected(cC3, cB4); // stars to crab
+            connections += contacts->connected(cB3, cA4); // stars to scales
             break;
     // Level 3 (2 contacts)
         case 3:
-            connections += contacts->connected(cA1, cC1);
-            connections += contacts->connected(cB1, cD1);
+            connections += contacts->connected(cA5, cC5);
+            connections += contacts->connected(cB5, cD5);
             connections *= 2;
             break;
     // Wait for reset

@@ -15,39 +15,44 @@ TwoWire I2Cobj = TwoWire(0);
 
 void setup() {
   Serial.begin(115200);
-  while(!Serial){
-    delay(5);
-  }
   Serial.println("Serial online!");
 
   I2Cobj.begin(SDA_PIN, SCL_PIN);
   
   status_leds = new StatusLeds();
-  // marble = new Marble();
-  // contacts = new Contacts();
+  marble = new Marble();
+  contacts = new Contacts();
   
   status_leds->setup(I2Cobj);
-  // marble->setup();
-  // contacts->setup(I2Cobj);
-  // digitalWrite(RGB_BUILTIN, LOW);
+  marble->setup();
+  contacts->setup(I2Cobj);
+  digitalWrite(RGB_BUILTIN, LOW);
 
-  // game.setup(contacts, status_leds, marble);
-  status_leds->test();
+  game.setup(contacts, status_leds, marble);
+  // status_leds->test();
+  // marble->setLed(1, HIGH);
+  // marble->setLed(2, HIGH);
+  // marble->setLed(3, HIGH);
+  marble->setMarble(3);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  // testContacts();
-  // testServo();
   // game.gameLoop();
-  // testLeds();
-  // status_leds->setStatus(2);
-  // status_leds->setLed(1, LOW);
-  // status_leds->setLed(2, HIGH);
-  // status_leds->setLed(3, LOW);
-  // status_leds->setLed(4, LOW);
   // testContacts();
+  // for(int i = 1; i <= 4; i++){
+  //   for (int j = 1; j <= 4; j++){
+  //     status_leds->setLed(j, (i == j) ? HIGH : LOW);
+
+  //   }
+  //   delay(1000);
+  // }
+  // for (int i = 0; i < 4; i++){
+  //   marble->setMarble(i);
+  //   delay(3000);
+  // }
+
 }
+
 
 void testLeds(){
   for(int i = 0; i <= 4; i++){
