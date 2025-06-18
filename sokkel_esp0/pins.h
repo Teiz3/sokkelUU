@@ -49,21 +49,21 @@
 // Side D on sepperate MCP27008
 #define CONTACT_MCP_D_ADDR 0x27
 
-#define CONTACT_D1 0
-#define CONTACT_D2 1
+#define CONTACT_D1 4
+#define CONTACT_D2 3
 #define CONTACT_D3 2
-#define CONTACT_D4 3
-#define CONTACT_D5 4
+#define CONTACT_D4 1
+#define CONTACT_D5 0
 
 //============================== Marble track pins ===================
-#define MARBLE_SERVO_1 4
-#define MARBLE_SERVO_2 2
-#define MARBLE_SERVO_3 5
+#define MARBLE_SERVO_1 5
+#define MARBLE_SERVO_2 4
+#define MARBLE_SERVO_3 2
 
-#define MARBLE_LED_1 6
-#define MARBLE_LED_2 7
-#define MARBLE_LED_3 8
-// #define MARBLE_LED_4 41 
+#define MARBLE_LED_0 8
+#define MARBLE_LED_1 7
+#define MARBLE_LED_2 6
+#define MARBLE_LED_3 41 
 
-#define LOCK_OUT 40
-#define LOCK_LED 39 // Incubator 
+#define LOCK_OUT 39
+#define LOCK_LED 40 // Incubator 

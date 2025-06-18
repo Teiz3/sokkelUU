@@ -43,12 +43,13 @@ void Marble::setup(){
   servo2.attach(MARBLE_SERVO_2);
   servo3.attach(MARBLE_SERVO_3);
 
+  pinMode(MARBLE_LED_0, OUTPUT);
   pinMode(MARBLE_LED_1, OUTPUT);
   pinMode(MARBLE_LED_2, OUTPUT);
   pinMode(MARBLE_LED_3, OUTPUT);
-  // pinMode(MARBLE_LED_4, OUTPUT);
 
   setMarble(0);
+  digitalWrite(MARBLE_LED_0, HIGH);
   Serial.println("Setup marble track!");
 }
 
@@ -65,7 +66,6 @@ void Marble::setLed(uint8_t led, uint8_t val){
     digitalWrite(MARBLE_LED_3, val);
     break;
   case 4:
-    // digitalWrite(MARBLE_LED_4, val);
     break;
   }
 
@@ -75,7 +75,7 @@ void Marble::ledsOnTill(uint8_t section){
   for(int i = 1; i <= section; i++){
     setLed(i, HIGH);
   }
-  for(int i = section+1; i <= 3; i++){
+  for(int i = section+1; i <= 4; i++){
     setLed(i, LOW);
   }
 }

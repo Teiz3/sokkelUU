@@ -8,9 +8,10 @@ Adafruit_MCP23X17 mcp;
 
 void StatusLeds::setStatus(uint8_t status){
   if(frozen){
+    Serial.println("FROZEN");
     return;
   }
-  for (int i = 1; i <= status && i <= 4; i++){
+  for (int i = 1; i <= 4; i++){
     setLed(i, (i <= status) ? HIGH : LOW);
   }
 }

@@ -33,11 +33,24 @@ void setup() {
   // marble->setLed(1, HIGH);
   // marble->setLed(2, HIGH);
   // marble->setLed(3, HIGH);
-  marble->setMarble(3);
+  // marble->setMarble(3);
 }
 
 void loop() {
   game.gameLoop();
+    // pinMode(LOCK_OUT, OUTPUT);
+    // pinMode(LOCK_LED, OUTPUT);
+    // digitalWrite(LOCK_OUT, HIGH); // Lock the lock
+    // delay(2000);
+    // digitalWrite(LOCK_OUT, LOW); // Lock the lock
+    // delay(2000);
+    
+    // digitalWrite(LOCK_LED, HIGH); // Lock the lock
+    // delay(2000);
+    // digitalWrite(LOCK_LED, LOW); // Lock the lock
+    // delay(2000);
+
+
   // testContacts();
   // for(int i = 1; i <= 4; i++){
   //   for (int j = 1; j <= 4; j++){
@@ -49,7 +62,7 @@ void loop() {
   // for (int i = 0; i < 4; i++){
   //   marble->setMarble(i);
   //   Serial.println(i);
-  //   delay(3000);
+  //   delay(2000);
   // }
 
 }
