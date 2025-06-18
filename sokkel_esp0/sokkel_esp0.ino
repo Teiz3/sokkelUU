@@ -37,7 +37,7 @@ void setup() {
 }
 
 void loop() {
-  // game.gameLoop();
+  game.gameLoop();
   // testContacts();
   // for(int i = 1; i <= 4; i++){
   //   for (int j = 1; j <= 4; j++){
@@ -48,6 +48,7 @@ void loop() {
   // }
   // for (int i = 0; i < 4; i++){
   //   marble->setMarble(i);
+  //   Serial.println(i);
   //   delay(3000);
   // }
 

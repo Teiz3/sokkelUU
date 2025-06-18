@@ -56,14 +56,14 @@
 #define CONTACT_D5 4
 
 //============================== Marble track pins ===================
-#define MARBLE_SERVO_1 2
-#define MARBLE_SERVO_2 4
+#define MARBLE_SERVO_1 4
+#define MARBLE_SERVO_2 2
 #define MARBLE_SERVO_3 5
 
 #define MARBLE_LED_1 6
 #define MARBLE_LED_2 7
 #define MARBLE_LED_3 8
-#define MARBLE_LED_4 9 // NEEDS CHECKING
+// #define MARBLE_LED_4 41 
 
 #define LOCK_OUT 40
-#define LOCK_LED 39
+#define LOCK_LED 39 // Incubator 

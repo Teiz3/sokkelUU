@@ -1,7 +1,9 @@
 #include "esp32-hal-gpio.h"
 #include "marble.h"
 
-uint8_t openval = 0;
+uint8_t openval_1 = 0;
+uint8_t openval_2 = 10;
+uint8_t openval_3 = 5;
 uint8_t closedval = 90;
 
 Servo servo1;
@@ -16,20 +18,20 @@ void Marble::setMarble(uint8_t section){
       servo3.write(closedval);
       break;
     case 1:
-      servo1.write(openval);
+      servo1.write(openval_1);
       servo2.write(closedval);
       servo3.write(closedval);
       break;
     case 2:
-      servo1.write(openval);
-      servo2.write(openval);
+      servo1.write(openval_1);
+      servo2.write(openval_2);
       servo3.write(closedval);
       break;
     case 3:
     default:
-      servo1.write(openval);
-      servo2.write(openval);
-      servo3.write(openval);
+      servo1.write(openval_1);
+      servo2.write(openval_2);
+      servo3.write(openval_3);
       break;
   }
   ledsOnTill(section);
@@ -44,6 +46,7 @@ void Marble::setup(){
   pinMode(MARBLE_LED_1, OUTPUT);
   pinMode(MARBLE_LED_2, OUTPUT);
   pinMode(MARBLE_LED_3, OUTPUT);
+  // pinMode(MARBLE_LED_4, OUTPUT);
 
   setMarble(0);
   Serial.println("Setup marble track!");
@@ -62,7 +65,7 @@ void Marble::setLed(uint8_t led, uint8_t val){
     digitalWrite(MARBLE_LED_3, val);
     break;
   case 4:
-    digitalWrite(MARBLE_LED_4, val);
+    // digitalWrite(MARBLE_LED_4, val);
     break;
   }
 
