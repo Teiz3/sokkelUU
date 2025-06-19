@@ -16,6 +16,8 @@ TwoWire I2Cobj = TwoWire(0);
 void setup() {
   Serial.begin(115200);
   Serial.println("Serial online!");
+  pinMode(LOCK_OUT, OUTPUT);
+  pinMode(LOCK_LED, OUTPUT);
 
   I2Cobj.begin(SDA_PIN, SCL_PIN);
   
@@ -38,8 +40,10 @@ void setup() {
 
 void loop() {
   game.gameLoop();
-    // pinMode(LOCK_OUT, OUTPUT);
-    // pinMode(LOCK_LED, OUTPUT);
+    // digitalWrite(LOCK_LED, LOW);
+    // delay(2000);
+    // digitalWrite(LOCK_LED, HIGH);
+    // delay(2000);
     // digitalWrite(LOCK_OUT, HIGH); // Lock the lock
     // delay(2000);
     // digitalWrite(LOCK_OUT, LOW); // Lock the lock
