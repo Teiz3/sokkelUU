@@ -15,15 +15,15 @@
 #define STATUS_LED_B3 6
 #define STATUS_LED_B4 7
 
-#define STATUS_LED_C1 8   // B0
-#define STATUS_LED_C2 9
-#define STATUS_LED_C3 10
-#define STATUS_LED_C4 11
+#define STATUS_LED_C1 15   // B0
+#define STATUS_LED_C2 14
+#define STATUS_LED_C3 13
+#define STATUS_LED_C4 12
 
-#define STATUS_LED_D1 12
-#define STATUS_LED_D2 13
-#define STATUS_LED_D3 14
-#define STATUS_LED_D4 15
+#define STATUS_LED_D1 11
+#define STATUS_LED_D2 10
+#define STATUS_LED_D3 9
+#define STATUS_LED_D4 8
 
 //============================ Contacts pins ========================
 #define CONTACT_MCP_ABC_ADDR 0x22

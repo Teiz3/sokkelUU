@@ -12,9 +12,13 @@ class Game{
         Contacts* contacts;
         StatusLeds* statusleds;
         Marble* marble;
-        void nextLevel();
+        void checkReset(); // Checks for the reset combination that resets the game, no matter which level the game is in.
+        uint8_t resetStep; // Holds the current reset step. Reset is a multi step process to reduce the chance of players accidentaly resetting the game.
+        unsigned long resetTimer;
     public:
       void setup(Contacts* contacts, StatusLeds* leds, Marble* marble);
       void gameLoop();
+      bool debugOut = true;
+      void nextLevel();
 };
 #endif

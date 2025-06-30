@@ -31,44 +31,29 @@ void setup() {
   digitalWrite(RGB_BUILTIN, LOW);
 
   game.setup(contacts, status_leds, marble);
-  // status_leds->test();
-  // marble->setLed(1, HIGH);
-  // marble->setLed(2, HIGH);
-  // marble->setLed(3, HIGH);
-  // marble->setMarble(3);
 }
 
 void loop() {
   game.gameLoop();
-    // digitalWrite(LOCK_LED, LOW);
-    // delay(2000);
-    // digitalWrite(LOCK_LED, HIGH);
-    // delay(2000);
-    // digitalWrite(LOCK_OUT, HIGH); // Lock the lock
-    // delay(2000);
-    // digitalWrite(LOCK_OUT, LOW); // Lock the lock
-    // delay(2000);
-    
-    // digitalWrite(LOCK_LED, HIGH); // Lock the lock
-    // delay(2000);
-    // digitalWrite(LOCK_LED, LOW); // Lock the lock
-    // delay(2000);
+  checkSerial();
+  // testLeds();
+}
 
-
-  // testContacts();
-  // for(int i = 1; i <= 4; i++){
-  //   for (int j = 1; j <= 4; j++){
-  //     status_leds->setLed(j, (i == j) ? HIGH : LOW);
-
-  //   }
-  //   delay(1000);
-  // }
-  // for (int i = 0; i < 4; i++){
-  //   marble->setMarble(i);
-  //   Serial.println(i);
-  //   delay(2000);
-  // }
-
+void checkSerial(){
+  String msg = "";
+  if (Serial.available()){
+    msg = Serial.readString();
+  }
+  if (msg != ""){
+    Serial.println("RECIEVED MESSAGE");
+    Serial.println(msg);
+  }
+  if (msg == "debug"){
+    game.debugOut = !game.debugOut;
+  }
+  if (msg == "skip"){
+    game.nextLevel();
+  }
 }
 
 
@@ -112,14 +97,6 @@ void testContacts(){
   Serial.print(contacts->debugReadABC(cD3));
   Serial.print(contacts->debugReadABC(cD4));
   Serial.println(contacts->debugReadABC(cD5));
-  // Serial.print(" DebugA1:");
-  // Serial.print(contacts->debugReadABC(cB1));
-  
-  // Serial.print(" DebugA2:");
-  // Serial.print(contacts->debugReadABC(cA2));
-
-
-
 
   Serial.println("");
   delay(1000);

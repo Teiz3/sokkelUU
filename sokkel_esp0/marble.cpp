@@ -2,7 +2,7 @@
 #include "marble.h"
 
 uint8_t openval_1 = 0;
-uint8_t openval_2 = 10;
+uint8_t openval_2 = 0;
 uint8_t openval_3 = 5;
 uint8_t closedval = 90;
 

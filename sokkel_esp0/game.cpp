@@ -13,19 +13,18 @@ void Game::setup(Contacts* contacts, StatusLeds* leds, Marble* marble){
 
 void Game::gameLoop(){
     statusleds->tick();
+    checkReset();
     uint8_t connections = 0;
     switch (level){
     // Level 1 (4 contacts)
         case 1:
             connections += contacts->connected(cA1, cA2);
-            // connections += 3;
             connections += contacts->connected(cB1, cB2);
             connections += contacts->connected(cC1, cC2);
             connections += contacts->connected(cD1, cD2);
             break;
     // Level 2 (4 contacts)
         case 2:
-            // connections += 4;
             connections += contacts->connected(cA3, cD4); // stars to twins
             connections += contacts->connected(cD3, cC4); // stars to capricorn
             connections += contacts->connected(cC3, cB4); // stars to crab
@@ -34,7 +33,6 @@ void Game::gameLoop(){
     // Level 3 (2 contacts)
         case 3:
             connections += contacts->connected(cA5, cC5);
-            // connections += 2;
             connections += contacts->connected(cB5, cD5);
             connections *= 2;
             break;
@@ -48,14 +46,37 @@ void Game::gameLoop(){
             break;
     }
     statusleds->setStatus(connections);
-    Serial.print("Level:");
-    Serial.print(level);
-    Serial.print("Connections: ");
-    Serial.println(connections);
+    if(debugOut){
+      Serial.print("Level:");
+      Serial.print(level);
+      Serial.print("Connections: ");
+      Serial.println(connections);
+    }
     if (connections >= 4){
       statusleds->freeze(5000);
       nextLevel();
     }
+
+}
+
+void Game::checkReset(){
+    if (contacts->connected(cD2, cD4) && resetStep == 0){
+      resetStep = 1;
+      resetTimer = millis();
+    }
+    if (millis() - resetTimer > 3000){
+      resetStep = 0;
+    }
+    if (contacts->connected(cD2, cD5) && resetStep == 1){
+      // RESET
+      level = 1;
+      digitalWrite(LOCK_OUT, HIGH);
+      digitalWrite(LOCK_LED, LOW);
+      marble->setMarble(0);
+      statusleds->setStatus(4);
+      delay(1000);
+    }
+
 
 }
 
