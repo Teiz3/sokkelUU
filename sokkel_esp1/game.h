@@ -31,10 +31,14 @@ class Game{
         Panel* panel;
         Screen screen;
         enum State currentState = INITIAL;
+        // Slowly activates the sun
+        // NOTE - this is a blocking function 
         void launchSun();
         bool launced = false;
+        unsigned long timer;
     public:
       void setup(Panel* panel, Screen screen);
       void gameLoop();
+      void skip();
 };
 #endif

@@ -10,12 +10,12 @@
 
 class Screen{
     private:
-      String msg_buffer;
-      String multi_msg_buffer[5];
-      uint8_t msg_count = 1;
+      String msg_buffer; // Buffer for the current message
+      String multi_msg_buffer[5]; // Buffer 2 store 5 messages that can be displayed after each other
+      uint8_t msg_count = 1; // Number of messages in the multi_msg_buffer
       uint8_t msg_index = 0; // 0 based index
 
-      int x;
+      int x; // Start position of the text (0=left, 32=right)
       int msg_pixel_size;
       unsigned long readTime = 2000;
       unsigned long lastUpdate;
@@ -25,6 +25,7 @@ class Screen{
       void nextMsg();
     public:
       void setup();
+      void setColor(uint8_t r, uint8_t g, uint8_t b);
       void print(String msg);
       void setBuffer(String msg_arr[], uint8_t size);
       void tick();

@@ -13,13 +13,16 @@ void Screen::setup(){
     matrix.begin();
     matrix.setTextWrap(false);
     matrix.setBrightness(40);
-    matrix.setTextColor(colors[1]);
+    setColor(255, 255, 255);
     Serial.println("Setup screen!");
+}
+
+void Screen::setColor(uint8_t r, uint8_t g, uint8_t b){
+  matrix.setTextColor(matrix.Color(g, r, b));
 }
 
 void Screen::print(String msg){
   if(msg_buffer != msg){
-    Serial.println(msg);
     x = 0;
     lastUpdate = millis();
     msg_buffer = msg;
@@ -35,9 +38,7 @@ void Screen::tick(){
     matrix.show();
   }
   if (millis()-lastUpdate < (readTime - 1000)){
-
-    Serial.println("READ return");
-    return;
+    return; // Freeze the text for a second before jumping to the next msg
   }
   x = x - 1;
   if(x <= min(-1*(msg_pixel_size - 32), 0)){
@@ -55,8 +56,6 @@ void Screen::tick(){
 
 void Screen::nextMsg(){
   Serial.println("NEXTMSG_TRIGGER");
-  Serial.println(msg_count);
-  Serial.println(msg_index);
   if (msg_count == 1){
      x = 0;
     lastUpdate = millis();
@@ -65,8 +64,6 @@ void Screen::nextMsg(){
     msg_index = (msg_index+1) % msg_count; 
     print(multi_msg_buffer[msg_index]);
   }
-  Serial.println(msg_count);
-  Serial.println(msg_index);
 }
 
 void Screen::setBuffer(String msg_arr[], uint8_t size){

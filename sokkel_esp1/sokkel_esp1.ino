@@ -9,36 +9,45 @@ Panel* panel;
 TwoWire I2Cobj = TwoWire(0);
 Screen screen;
 
+// Tester is used to print debug output to serial
 Tester tester;
 Game game;
+bool debugOut = true;
 
 void setup() {
   Serial.begin(115200);
-  // while(!Serial){
-  //   delay(5);
-  // }
   Serial.println("Serial port started.");
   I2Cobj.begin(SDA_PIN, SCL_PIN);
-  // I2Cobj.setClock(100000);
 
   panel = new Panel();
   panel->setup(I2Cobj);
   screen.setup();
-
   game.setup(panel, screen);
   tester.setup(panel);
 }
 
 void loop() {
-  tester.test();
-  // if(panel->giantHandleActive()){
-  //   screen.print("Sun launced!");
-  // }
-  // else{
-  //   screen.print("Pull lever");
-  // }
-  // screen.tick();
+  checkSerial();
+  if(debugOut){
+    tester.test();
+  }
   game.gameLoop();
   delay(100);
+}
 
+void checkSerial(){
+  String msg = "";
+  if (Serial.available()){
+    msg = Serial.readString();
+  }
+  if (msg != ""){
+    Serial.println("RECIEVED MESSAGE");
+    Serial.println(msg);
+  }
+  if (msg == "debug"){
+    debugOut = !debugOut;
+  }
+  if (msg == "skip"){
+    game.skip();
+  }
 }

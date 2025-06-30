@@ -1,4 +1,3 @@
-#include "esp32-hal.h"
 #include "tester.h"
 
 
@@ -7,6 +6,8 @@ void Tester::setup(Panel* panel){
     Serial.println("Setup tester!");
 }
 
+// Helper to convert the state of a cometswitvh to int so 
+// they kan be easily displayed in the serial output
 int cometToInt(enum CometSwitch c, int offset){
   switch (c){
       case UP:
@@ -19,8 +20,6 @@ int cometToInt(enum CometSwitch c, int offset){
 }
 
 void Tester::test(){
-    // Serial.print("B:-3 ");
-    // Serial.print("T:9 ");
     Serial.print("Star:");
     Serial.print(panel->getStardust());
 
