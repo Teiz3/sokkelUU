@@ -27,6 +27,7 @@ void Screen::print(String msg){
     lastUpdate = millis();
     msg_buffer = msg;
     msg_pixel_size = msg_buffer.length() * 6; //(5+1) pixels for each letter
+    freeze = false;
   }
 }
 
@@ -78,3 +79,13 @@ void Screen::setBuffer(String msg_arr[], uint8_t size){
   }
 }
 
+void Screen::screenWipe(){
+  for(int x = 31; x >= -2; x--){
+    
+    matrix.writeLine(x, 0, x, 7, matrix.Color(0, 255, 0));
+    matrix.writeLine(x+1, 0, x+1, 7, matrix.Color(0, 128, 0));
+    matrix.writeLine(x+2, 0, x+2, 7, matrix.Color(0, 0, 0));
+    matrix.show();
+    delay(10);
+  }
+}

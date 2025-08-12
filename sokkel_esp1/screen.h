@@ -26,8 +26,14 @@ class Screen{
     public:
       void setup();
       void setColor(uint8_t r, uint8_t g, uint8_t b);
+      // Writes a new single message to the message buffer and resets all the screen timers
+      // so it starts anew with the new message in the buffer.
+      // If the message is already in the buffer it does nothing
       void print(String msg);
       void setBuffer(String msg_arr[], uint8_t size);
       void tick();
+      // Animated wipe of the screen.
+      // BLOCKING FUNCTION
+      void screenWipe();
 };
 #endif

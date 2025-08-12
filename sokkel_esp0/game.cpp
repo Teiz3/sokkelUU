@@ -71,14 +71,15 @@ void Game::checkReset(){
       // RESET
       // First open up the servos to let the marble out.
       marble->setMarble(3);
-      delay(5000); // allow the marble to clear out
+      digitalWrite(LOCK_OUT, LOW); // Open incubator so gamemasters can check it
+      statusleds->setStatus(4);
+      delay(9000); // allow the marble to clear out
       //Reset the rest of the sokkel
       level = 1;
       digitalWrite(LOCK_OUT, HIGH);
       digitalWrite(LOCK_LED, LOW);
       marble->setMarble(0);
-      statusleds->setStatus(4);
-      delay(1000); // 1 sec delay to have the leds all on as indicator that the game is reset
+      delay(1000); 
     }
 
 

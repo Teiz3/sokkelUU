@@ -8,11 +8,7 @@ void Game::setup(Panel* panel, Screen screen){
     Serial.println("Setup game!");
 }
 
-void Game::gameLoop(){
-    // Update components
-    screen.tick();
-    panel->updateAvoMeter();
-    
+void Game::gameLoop(){  
     // Gameloop
     switch (currentState){
         case INITIAL:
@@ -21,7 +17,8 @@ void Game::gameLoop(){
             screen.print("put in safe mode");
             panel->setWarnLed(HIGH);
             if(panel->keyTurned()){
-                currentState = SAFEMODE;
+                nextLevel();
+                return;
             }
             break;
         case SAFEMODE:
@@ -38,7 +35,8 @@ void Game::gameLoop(){
             panel->getComet('v') == DOWN &&
             panel->getComet('p') == DOWN
         ){
-            currentState = PRELAUNCH;
+            nextLevel();
+            return;
           }
             break;
         case PRELAUNCH:
@@ -46,7 +44,7 @@ void Game::gameLoop(){
                 screen.setColor(255, 255, 0);
                 screen.print("place new sun");
             }else{
-              screen.setColor(255, 0, 0);
+              screen.setColor(255, 120, 0); // Oranje achtig
               String pre_msgs[2] = {"Error 501", "new sun detected"};
               screen.setBuffer(pre_msgs, 2);
             }
@@ -61,7 +59,8 @@ void Game::gameLoop(){
                 panel->getComet('p') == DOWN &&
                 panel->sunConnected()
             ){
-                currentState = LAUNCH;
+                nextLevel();
+                return;
             }
             break;
         case LAUNCH:
@@ -70,42 +69,50 @@ void Game::gameLoop(){
             String launch_msgs[3] = {"launch sun", "code 6043", "pull lever"};
             screen.setBuffer(launch_msgs, 3);
             if(panel->giantHandleActive()){
-                currentState = POSTLAUNCH;
-                timer = millis();
+                nextLevel();
+                return;
             }
             break;
         }
         case POSTLAUNCH:
             screen.setColor(255, 255, 0);
-            screen.print("sun launched!");
+            screen.print(" sun  launced!");
+            screen.tick();
             delay(100);
             launchSun();
             if(millis() - timer > (10 * 1000) && !panel->giantHandleActive() && !panel->keyTurned()){
-                analogWrite(SUN_OUT, 0);
-                launced=false;
-                currentState = INITIAL;
+                nextLevel();
+                return;
             }
             break; 
     }
+    // Update components
+    screen.tick();
+    panel->updateAvoMeter();
     return;
+}
+
+void Game::nextLevel(){
+    switch(currentState){
+        case INITIAL: currentState = SAFEMODE; break;
+        case SAFEMODE: currentState = PRELAUNCH; break;
+        case PRELAUNCH: currentState = LAUNCH; break;
+        case LAUNCH: 
+            currentState = POSTLAUNCH; 
+            timer = millis();
+            break;
+        case POSTLAUNCH:
+            analogWrite(SUN_OUT, 0);
+            launced=false;
+            currentState = INITIAL;
+    }
+    screen.screenWipe();
 }
 
 void Game::skip(){
   Serial.println("Skipping current state. Skipped state is: ");
   Serial.println(currentState);
-  switch (currentState){
-    case INITIAL: currentState = SAFEMODE; break;
-    case SAFEMODE: currentState = PRELAUNCH; break;
-    case PRELAUNCH: currentState = LAUNCH; break;
-    case LAUNCH: 
-        currentState = POSTLAUNCH; 
-        timer = millis();
-        break;
-    case POSTLAUNCH:
-        analogWrite(SUN_OUT, 0);
-        launced=false;
-        currentState = INITIAL;
-  }
+  nextLevel();
 }
 
 void Game::launchSun(){
@@ -115,7 +122,7 @@ void Game::launchSun(){
     }
     for (int i = 0; i <= 255; i++){
         analogWrite(SUN_OUT, i);
-        delay(100);
+        delay(25);
     }
     launced=true;
 }

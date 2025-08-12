@@ -36,6 +36,9 @@ class Game{
         void launchSun();
         bool launced = false;
         unsigned long timer;
+        // Internal function to go to the next level
+        // Allows for screen animations on each transition
+        void nextLevel();
     public:
       void setup(Panel* panel, Screen screen);
       void gameLoop();
