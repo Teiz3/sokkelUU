@@ -17,7 +17,7 @@ void setup() {
   Serial.begin(115200);
   Serial.println("Serial online!");
   pinMode(LOCK_OUT, OUTPUT);
-  pinMode(LOCK_LED, OUTPUT);
+  // pinMode(LOCK_LED, OUTPUT);
 
   I2Cobj.begin(SDA_PIN, SCL_PIN);
   

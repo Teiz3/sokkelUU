@@ -65,49 +65,60 @@ bool Contacts::isPlateD(enum ContactEnum connectorName){
   }
 }
 
+// uint8_t Contacts::getPin(enum ContactEnum connectorName){
+//     switch(connectorName){
+//       case cA1:
+//         return CONTACT_A1;
+//       case cA2:
+//         return CONTACT_A2;
+//       case cA3:
+//         return CONTACT_A3;
+//       case cA4:
+//         return CONTACT_A4;
+//       case cA5:
+//         return CONTACT_A5;
+//       case cB1:
+//         return CONTACT_B1;
+//       case cB2:
+//         return CONTACT_B2;
+//       case cB3:
+//         return CONTACT_B3;
+//       case cB4:
+//         return CONTACT_B4;
+//       case cB5:
+//         return CONTACT_B5;
+//       case cC1:
+//         return CONTACT_C1;
+//       case cC2:
+//         return CONTACT_C2;
+//       case cC3:
+//         return CONTACT_C3;
+//       case cC4:
+//         return CONTACT_C4;
+//       case cC5:
+//         return CONTACT_C5;
+//       case cD1:
+//         return CONTACT_D1;
+//       case cD2:
+//         return CONTACT_D2;
+//       case cD3:
+//         return CONTACT_D3;
+//       case cD4:
+//         return CONTACT_D4;
+//       case cD5:
+//         return CONTACT_D5;
+//     }
+// }
+
+static constexpr uint8_t contactPinMap[CONTACT_COUNT] = {
+    CONTACT_A1, CONTACT_A2, CONTACT_A3, CONTACT_A4, CONTACT_A5,
+    CONTACT_B1, CONTACT_B2, CONTACT_B3, CONTACT_B4, CONTACT_B5,
+    CONTACT_C1, CONTACT_C2, CONTACT_C3, CONTACT_C4, CONTACT_C5,
+    CONTACT_D1, CONTACT_D2, CONTACT_D3, CONTACT_D4, CONTACT_D5
+};
+
 uint8_t Contacts::getPin(enum ContactEnum connectorName){
-    switch(connectorName){
-      case cA1:
-        return CONTACT_A1;
-      case cA2:
-        return CONTACT_A2;
-      case cA3:
-        return CONTACT_A3;
-      case cA4:
-        return CONTACT_A4;
-      case cA5:
-        return CONTACT_A5;
-      case cB1:
-        return CONTACT_B1;
-      case cB2:
-        return CONTACT_B2;
-      case cB3:
-        return CONTACT_B3;
-      case cB4:
-        return CONTACT_B4;
-      case cB5:
-        return CONTACT_B5;
-      case cC1:
-        return CONTACT_C1;
-      case cC2:
-        return CONTACT_C2;
-      case cC3:
-        return CONTACT_C3;
-      case cC4:
-        return CONTACT_C4;
-      case cC5:
-        return CONTACT_C5;
-      case cD1:
-        return CONTACT_D1;
-      case cD2:
-        return CONTACT_D2;
-      case cD3:
-        return CONTACT_D3;
-      case cD4:
-        return CONTACT_D4;
-      case cD5:
-        return CONTACT_D5;
-    }
+  return contactPinMap[connectorName];
 }
 
 int Contacts::debugReadABC(enum ContactEnum connectorName){

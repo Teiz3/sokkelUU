@@ -7,6 +7,8 @@
 #include <Adafruit_MCP23X17.h>
 #include <Adafruit_MCP23X08.h>
 
+#define CONTACT_COUNT 20
+
 enum ContactEnum{
   cA1, cA2, cA3, cA4, cA5,
   cB1, cB2, cB3, cB4, cB5,

@@ -41,7 +41,7 @@ void Game::gameLoop(){
             connections += contacts->connected(cD2, cD4);
             connections *= 4;
             
-            digitalWrite(LOCK_LED, HIGH);
+            // digitalWrite(LOCK_LED, HIGH);
             digitalWrite(LOCK_OUT, LOW);
             break;
     }
@@ -77,7 +77,7 @@ void Game::checkReset(){
       //Reset the rest of the sokkel
       level = 1;
       digitalWrite(LOCK_OUT, HIGH);
-      digitalWrite(LOCK_LED, LOW);
+      // digitalWrite(LOCK_LED, LOW);
       marble->setMarble(0);
       delay(1000); 
     }
@@ -90,7 +90,7 @@ void Game::nextLevel(){
   level += 1;
   if (level > 4){
     digitalWrite(LOCK_OUT, HIGH);
-    digitalWrite(LOCK_LED, LOW);
+    // digitalWrite(LOCK_LED, LOW);
     level=1;
   }
   marble->setMarble(level-1);

@@ -5,8 +5,13 @@
 #include "pins.h"
 #include <SPI.h>
 #include <Adafruit_GFX.h>
-#include <Adafruit_DotStarMatrix.h>
-#include <Adafruit_DotStar.h>
+#if SOKKEL == 0
+  #include <Adafruit_DotStarMatrix.h>
+  #include <Adafruit_DotStar.h>
+#elif SOKKEL == 1
+  #include <Adafruit_NeoMatrix.h>
+  #include <Adafruit_NeoPixel.h>
+#endif
 
 class Screen{
     private:

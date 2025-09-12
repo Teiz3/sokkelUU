@@ -1,10 +1,19 @@
 #include "screen.h"
 
-Adafruit_DotStarMatrix matrix = Adafruit_DotStarMatrix(
-  32, 8, SPI_LN, SPI_CLK,
-  DS_MATRIX_BOTTOM     + DS_MATRIX_RIGHT +
-  DS_MATRIX_COLUMNS + DS_MATRIX_ZIGZAG,
-  DOTSTAR_BRG);
+#if SOKKEL == 0
+  Adafruit_DotStarMatrix matrix = Adafruit_DotStarMatrix(
+    32, 8, SPI_LN, SPI_CLK,
+    DS_MATRIX_BOTTOM     + DS_MATRIX_RIGHT +
+    DS_MATRIX_COLUMNS + DS_MATRIX_ZIGZAG,
+    DOTSTAR_BRG);
+#elif SOKKEL == 1
+  Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(
+    32, 8, SCREEN_PIN,
+    NEO_MATRIX_TOP + NEO_MATRIX_RIGHT +
+    NEO_MATRIX_COLUMNS + NEO_MATRIX_PROGRESSIVE,
+    NEO_GRB + NEO_KHZ800);
+#endif
+
 
 const uint16_t colors[] = {
   matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255) };
