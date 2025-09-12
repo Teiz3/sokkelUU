@@ -13,5 +13,6 @@ class Marble{
       // Open up the marble track till parameter section. section 0 = all closed, section 3 = all open
       void setMarble(uint8_t section);
       void setup();
+      void debugServo();
 };
 #endif

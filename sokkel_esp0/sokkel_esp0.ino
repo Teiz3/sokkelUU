@@ -12,6 +12,7 @@ Contacts* contacts; // Status leds object to control the 16 status leds
 Game game;
 
 TwoWire I2Cobj = TwoWire(0);
+int ServoMode;
 
 void setup() {
   Serial.begin(115200);
@@ -31,12 +32,16 @@ void setup() {
   digitalWrite(RGB_BUILTIN, LOW);
 
   game.setup(contacts, status_leds, marble);
+  ServoMode = 0;
 }
 
 void loop() {
-  game.gameLoop();
-  checkSerial();
+  // game.gameLoop();
+  // checkSerial();
+  // testContacts();
   // testLeds();
+  // marble->debugServo();
+  testServo();
 }
 
 void checkSerial(){
@@ -66,10 +71,19 @@ void testLeds(){
 }
 
 void testServo(){
-  marble->setMarble(0);
-  delay(500);
-  // marble->setMarble(1);
-  // delay(500);
+  String msg = "";
+  if (Serial.available()){
+    msg = Serial.readString();
+  }
+  if (msg != ""){
+    ServoMode += 1;
+    if (ServoMode > 3){
+      ServoMode = 0;
+    }
+  }
+  marble->setMarble(ServoMode);
+  Serial.println(ServoMode);
+  delay(100);
 }
 
 void testContacts(){

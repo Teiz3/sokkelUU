@@ -1,14 +1,31 @@
+#include <stdint.h>
 #include "esp32-hal-gpio.h"
 #include "marble.h"
-
-uint8_t openval_1 = 0;
-uint8_t openval_2 = 0;
-uint8_t openval_3 = 5;
-uint8_t closedval = 90;
+#if SOKKEL == 0
+  uint8_t openval_1 = 0;
+  uint8_t openval_2 = 0;
+  uint8_t openval_3 = 5;
+  uint8_t closedval = 90;
+  // uint8_t closedval_3 = 90;
+#elif SOKKEL == 1
+  uint8_t openval_1 = 90;
+  uint8_t openval_2 = 80;
+  uint8_t openval_3 = 95;
+  uint8_t closedval = 0;
+  // uint8_t closedval_3 = 150;
+#endif
 
 Servo servo1;
 Servo servo2;
 Servo servo3;
+
+void Marble::debugServo(){
+  for(int i = 0; i <= 180; i++){
+    servo3.write(i);
+    Serial.println(i);
+    delay(20);
+  }
+}
 
 void Marble::setMarble(uint8_t section){
   switch(section){

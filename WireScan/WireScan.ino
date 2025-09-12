@@ -3,7 +3,8 @@
 void setup() {
   Serial.begin(115200);
   // Wire.begin(47, 38); // ESP1
-  Wire.begin(21, 38); // ESP0
+  // Wire.begin(21, 38); // ESP0
+  Wire.begin(4, 6); // SOKKEL 2 ESP0
 }
 
 void loop() {
@@ -17,7 +18,7 @@ void loop() {
     Wire.beginTransmission(address);
     error = Wire.endTransmission();
     if (error == 0) {
-      // Serial.printf("I2C device found at address 0x%02X\n", address);
+      Serial.printf("I2C device found at address 0x%02X\n", address);
       Serial.println(address);
       nDevices++;
     } else if (error != 2) {
