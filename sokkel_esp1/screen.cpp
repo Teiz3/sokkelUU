@@ -9,20 +9,21 @@
 #elif SOKKEL == 1
   Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(
     32, 8, SCREEN_PIN,
-    NEO_MATRIX_TOP + NEO_MATRIX_RIGHT +
-    NEO_MATRIX_COLUMNS + NEO_MATRIX_PROGRESSIVE,
-    NEO_GRB + NEO_KHZ800);
+    NEO_MATRIX_BOTTOM + NEO_MATRIX_RIGHT +
+    NEO_MATRIX_COLUMNS + NEO_MATRIX_ZIGZAG,
+    NEO_RGB + NEO_KHZ800);
 #endif
 
 
-const uint16_t colors[] = {
-  matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255) };
+// const uint16_t colors[] = {
+//   matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255) };
 
 void Screen::setup(){
     matrix.begin();
     matrix.setTextWrap(false);
     matrix.setBrightness(40);
     setColor(255, 255, 255);
+    // print("BOOT");
     Serial.println("Setup screen!");
 }
 
@@ -31,6 +32,13 @@ void Screen::setColor(uint8_t r, uint8_t g, uint8_t b){
 }
 
 void Screen::print(String msg){
+  // Serial.print("PRINT CALLED: ");
+  // Serial.println(msg);
+  // Serial.print("buffer:");
+  // Serial.println(msg_buffer);
+  // Serial.print("equal:");
+  // Serial.println(msg_buffer == msg);
+  
   if(msg_buffer != msg){
     x = 0;
     lastUpdate = millis();
@@ -41,6 +49,12 @@ void Screen::print(String msg){
 }
 
 void Screen::tick(){
+  // Serial.print("Screen tick.");
+  // Serial.print(" Msg:");
+  // Serial.println(msg_buffer);
+  // Serial.print("frozen: ");
+  // Serial.println(freeze);
+
   if(!freeze){
     matrix.fillScreen(0);
     matrix.setCursor(x, 0);
@@ -97,4 +111,12 @@ void Screen::screenWipe(){
     matrix.show();
     delay(10);
   }
+}
+
+void Screen::newtick(){
+  matrix.show();
+}
+
+void Screen::newprint(String msg){
+  matrix.print(msg);
 }

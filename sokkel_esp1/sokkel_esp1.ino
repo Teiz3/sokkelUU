@@ -9,6 +9,8 @@ Panel* panel;
 TwoWire I2Cobj = TwoWire(0);
 Screen screen;
 
+unsigned long lastUpdate;
+
 // Tester is used to print debug output to serial
 Tester tester;
 Game game;
@@ -16,6 +18,7 @@ bool debugOut = true;
 
 void setup() {
   Serial.begin(115200);
+  lastUpdate = millis();
   Serial.println("Serial port started.");
   I2Cobj.begin(SDA_PIN, SCL_PIN);
 
@@ -27,12 +30,21 @@ void setup() {
 }
 
 void loop() {
-  checkSerial();
-  if(debugOut){
+  // screen.tick();
+  // checkSerial();
+  // if(debugOut){
+  //   tester.test();
+  // }
+  // game.gameLoop();
+  screen.newprint("ka");
+  screen.newtick();
+  if (millis() - lastUpdate > 100) { // adjust speed
+    // screen.tick();
+    game.gameLoop();
     tester.test();
+    lastUpdate = millis();
   }
-  game.gameLoop();
-  delay(100);
+  // delay(100);
 }
 
 void checkSerial(){

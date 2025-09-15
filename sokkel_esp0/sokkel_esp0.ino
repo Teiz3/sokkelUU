@@ -36,12 +36,12 @@ void setup() {
 }
 
 void loop() {
-  // game.gameLoop();
-  // checkSerial();
+  game.gameLoop();
+  checkSerial();
   // testContacts();
   // testLeds();
   // marble->debugServo();
-  testServo();
+  // testServo();
 }
 
 void checkSerial(){

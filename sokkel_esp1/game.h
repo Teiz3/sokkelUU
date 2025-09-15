@@ -31,15 +31,16 @@ class Game{
         Panel* panel;
         Screen screen;
         enum State currentState = INITIAL;
-        // Slowly activates the sun
-        // NOTE - this is a blocking function 
-        void launchSun();
         bool launced = false;
         unsigned long timer;
         // Internal function to go to the next level
         // Allows for screen animations on each transition
         void nextLevel();
+        bool sunDetected = true;
     public:
+      // Slowly activates the sun
+      // NOTE - this is a blocking function 
+      void launchSun();
       void setup(Panel* panel, Screen screen);
       void gameLoop();
       void skip();

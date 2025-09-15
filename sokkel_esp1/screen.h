@@ -40,5 +40,9 @@ class Screen{
       // Animated wipe of the screen.
       // BLOCKING FUNCTION
       void screenWipe();
+
+      // DEBUG BROKEN MESS OF SOKKEL 1
+      void newtick();
+      void newprint(String msg);
 };
 #endif

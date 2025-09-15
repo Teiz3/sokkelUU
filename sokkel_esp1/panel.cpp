@@ -24,11 +24,16 @@ bool Panel::giantHandleActive(){
 }
 
 void Panel::setWarnLed(uint8_t val){
-    mcp.digitalWrite(LED_PIN, val);
+
+    mcp.digitalWrite(LED_PIN, !val);
 }
 
 int Panel::getLinPot(){
-  return analogRead(SLIDE_POT_METER);
+  #if SOKKEL == 0
+    return analogRead(SLIDE_POT_METER);
+  #elif SOKKEL == 1
+    return 4096 - analogRead(SLIDE_POT_METER);
+  #endif
 }
 
 int Panel::getRadiation(){

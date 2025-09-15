@@ -40,7 +40,10 @@ void Game::gameLoop(){
           }
             break;
         case PRELAUNCH:
-            if (!panel->sunConnected()){
+            if (!sunDetected && panel->sunConnected()){
+              sunDetected = true;
+            }
+            if (!sunDetected){
                 screen.setColor(255, 255, 0);
                 screen.print("place new sun");
             }else{
@@ -56,8 +59,8 @@ void Game::gameLoop(){
                 panel->getComet('h') == DOWN &&
                 panel->getComet('j') == UP &&
                 panel->getComet('v') == UP &&
-                panel->getComet('p') == DOWN &&
-                panel->sunConnected()
+                panel->getComet('p') == DOWN 
+                // panel->sunConnected()
             ){
                 nextLevel();
                 return;
@@ -78,6 +81,7 @@ void Game::gameLoop(){
             screen.setColor(255, 255, 0);
             screen.print(" sun  launced!");
             screen.tick();
+            sunDetected = false;
             delay(100);
             launchSun();
             if(millis() - timer > (10 * 1000) && !panel->giantHandleActive() && !panel->keyTurned()){
@@ -104,6 +108,7 @@ void Game::nextLevel(){
         case POSTLAUNCH:
             analogWrite(SUN_OUT, 0);
             launced=false;
+            sunDetected = false;
             currentState = INITIAL;
     }
     screen.screenWipe();
