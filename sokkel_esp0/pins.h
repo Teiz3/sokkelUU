@@ -103,8 +103,8 @@
 
     #define CONTACT_A1 0 //A0
     #define CONTACT_A2 1
-    #define CONTACT_A3 3
-    #define CONTACT_A4 2
+    #define CONTACT_A3 2
+    #define CONTACT_A4 3
     #define CONTACT_A5 4
 
     #define CONTACT_B1 8
